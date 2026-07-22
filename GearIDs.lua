@@ -1,0 +1,2885 @@
+-- GearListGUI | Fixed Version
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local gears = {
+  {"Big Bag of Bucks", 999864737},
+  {"Snow Storm Cloud", 189910805},
+  {"Fake Egg Spawner", 220288991},
+  {"XLS Mark II Pulse Laser Pistol", 11000270},
+  {"Jade Katana of the Darkest Forest", 21294480},
+  {"Heather the Dragon Rider", 257807712},
+  {"Forbidden Box", 95354259},
+  {"Royal Guard of Horus' Lotus Staff", 280377141},
+  {"Lightning Guard General Sword", 2588272910},
+  {"Trololo Cape of Invisibility", 129471121},
+  {"Treacherous Throwing Knives", 1929592959},
+  {"RGC 2012 Gladius", 86692539},
+  {"Cro-Minion Club", 261826406},
+  {"Bat Knight Bat Sword", 17680660},
+  {"Lobster", 75906930},
+  {"Shadow Sword", 103359953},
+  {"7723 Companion", 222148843},
+  {"From the Vault: Dozens of Dinosaurs", 292970740},
+  {"September Promo Health Core", 91445347},
+  {"Dynamically Lit Sword", 160108363},
+  {"Adalinda's Anlance", 78665204},
+  {"Birthday Pinata", 34380938},
+  {"Potato Cannon", 81847365},
+  {"Gear Cloner", 97101295},
+  {"Spectral Sword of Illusions", 68848741},
+  {"Lightning Horn of the Heavens", 321582427},
+  {"Opened Basket of Ultimate Troll", 382837983},
+  {"All American Roped", 161219921},
+  {"Protest Sign: Pro Fake Mustache", 21440056},
+  {"Legendary Ice Club", 136213778},
+  {"Golden Katana of the Unflinching Dawn", 18776718},
+  {"ROBLOX Classic Brigand's Sword", 10468915},
+  {"Frostooth the Frozen Treasure Chest", 1245300147},
+  {"Hiccup's Trusty Shield", 257840033},
+  {"Candy Cane Launcher", 101078326},
+  {"Skeleton BattleAxe", 1088051378},
+  {"Diamond Blade Sword", 173755801},
+  {"Attack Snake Staff", 220288951},
+  {"Ne'Kotikoz Incarnate", 61459592},
+  {"Red Grind Skateboard", 163355211},
+  {"Rainbow Periastron Omega", 159229866},
+  {"Pizza Sword", 602146440},
+  {"First Aid Kit", 15397778},
+  {"Meerkat Horde", 268533320},
+  {"Helper Cannon", 84417104},
+  {"Racing Tractor", 1708355542},
+  {"Skele-tar", 13478015},
+  {"Knights of the Splintered Skies: Bow and Arrow", 55917429},
+  {"Silly Guitar", 57229371},
+  {"All-Seeing Golem's Hammer", 478707595},
+  {"Roped", 104642522},
+  {"Dr. Fia Tyfold - Pint-Size Healing Gun", 3410296138},
+  {"Hi-Velocity Phaser 5700", 16469499},
+  {"Staff of Celestial Light", 49491781},
+  {"Fall Periastron XI", 2644549379},
+  {"The Fiery Sun", 82821250},
+  {"Sword of the Unseen Eye", 71422361},
+  {"Confetti Cannon", 34399428},
+  {"Opened Golden Basket of Heroic Adventures", 152766031},
+  {"Sinister Korblox Wings", 236403905},
+  {"Summer Skate", 118650365},
+  {"Amazing Shrinking Elixir", 74984396},
+  {"Frying Pan", 24346755},
+  {"Zombie Hunter Motorcycle", 244588971},
+  {"8-Bit Sword", 361950297},
+  {"Book Worm", 128160029},
+  {"Groundhogger", 105351720},
+  {"Ghostfire Sword", 64228933},
+  {"Attack Racket", 718258183},
+  {"Spider Horde", 1103012605},
+  {"Sword of the Bright Knight", 135518721},
+  {"Spider-Drone", 1062304136},
+  {"Homemade Motorcycle", 248285248},
+  {"Brown Bunny Accoutrement", 385780758},
+  {"Polar Mount", 332747874},
+  {"Venomshank", 68603324},
+  {"Staff of Double Disasters", 173812248},
+  {"Egg Cannon 9000", 76768897},
+  {"Bruin Fortune Hunter's Sword", 467895641},
+  {"Gearworks Sword", 356213216},
+  {"High Five", 72644603},
+  {"Roblox Surfboard", 880433057},
+  {"10/9 - Zombie Escape Scooter", 304719069},
+  {"Knights of the Splintered Skies: Sword and Shield", 51302640},
+  {"Speedy Snow Boots", 1241585476},
+  {"Dory Lantern", 419241111},
+  {"Vilethorn", 54694334},
+  {"Grimgold Periastron Beta", 73829193},
+  {"Opened ROBLOX Basket of Self Eggspression", 229909306},
+  {"Magic Lamp", 71037856},
+  {"Morblox the Terrifying's Sword", 180208135},
+  {"Razevenge", 74385386},
+  {"Bloxster BZR", 215355320},
+  {"Eccentric Time Keeper's Sword", 140400812},
+  {"Icedagger", 83704165},
+  {"ROBLOX Interns 2010 Mug", 32199868},
+  {"Snowy Gravity Coil", 186868758},
+  {"Electric Blue", 12504077},
+  {"Surface Tool", 16200508},
+  {"The Duke's Blade of Due Process", 1360077860},
+  {"BuildInsert", 36431591},
+  {"Zombification Injection", 93536867},
+  {"Terra Warrior Staff", 155414424},
+  {"Skull Cracker - Level Up Exclusive", 65469900},
+  {"Helen The Hiphipapotamus", 15179000},
+  {"Bear Arm", 85145626},
+  {"Starfish Shooter", 54130552},
+  {"Ghost Invisibility Elixir", 64168538},
+  {"Cupid's Revenge", 72069855},
+  {"Crate of Snakes", 49059364},
+  {"Independence Roman Candle", 55302225},
+  {"Darkheart", 16895215},
+  {"8-Bit Skateboard", 507797529},
+  {"Unicorn Nunchuks", 1513262045},
+  {"Laser Finger Pointers", 115377964},
+  {"Mauser .96", 97885552},
+  {"Slateskin Potion", 1145064},
+  {"Shadowy Ninja Star of the Silent House", 11115851},
+  {"Steampunk Bow", 184760397},
+  {"Scrooge McDuck's Sun Chaser Plane", 999865627},
+  {"Hiccup's Flaming Sword - Sponsored by HTTYD2", 161075864},
+  {"Opened Violet Basket of Equal Cosmic Time", 152173291},
+  {"Slingshot", 33382537},
+  {"Brainy Smurf", 686618111},
+  {"Fang of Tsuchigumo", 1145081320},
+  {"Leprechaun Friend", 74972442},
+  {"Chef de Cuisine Frying Pan", 1560400932},
+  {"ROBLOX Grab Bag", 34398653},
+  {"Laser Sword and Shield", 1241586596},
+  {"Disintergrex Blast Gun", 18268645},
+  {"Merely's Sparkle Time Hoverboard", 124127383},
+  {"Vine Staff", 30847733},
+  {"Porg", 118306601},
+  {"BLOXcon Hall of Fame 2013 Award", 123134949},
+  {"Robot Guard Dog", 467935723},
+  {"Pop Queen Superstar Spectacular Guitar", 1427439972},
+  {"Rocket Launcher", 32356064},
+  {"Bo Staff 7000", 159199263},
+  {"Niffler Companion", 243599037},
+  {"Above Top Secret Jetpack", 219001608},
+  {"Halloween Paintball Gun", 36107470},
+  {"Silver Ninja Star of the Brilliant Light", 11377306},
+  {"Pyrox's Flame Staff", 105179596},
+  {"Snowball Gloves", 638034686},
+  {"Gamer's Guide Controller", 252564167},
+  {"The 7th Annual Bloxy Award", 4811755352},
+  {"Bat Blade", 63721724},
+  {"Red Rolling Hoverboard", 398576172},
+  {"Silver Dust", 37604889},
+  {"RDC 2019 1st Runner Up", 3608622810},
+  {"Minions YTO Special", 261826683},
+  {"Cloud 9 Snowboard", 139586244},
+  {"Trusty Blade", 96669687},
+  {"Super Tone Cape", 130925426},
+  {"War Rocks", 10884288},
+  {"Mahen's ROBLOX Tablet", 98253651},
+  {"Ameriboard", 81847533},
+  {"Shamrockin' Guitar", 108148479},
+  {"Ferocious Mr. Fox", 1829110586},
+  {"Skeleton Slashers", 306971659},
+  {"Candy Cane Bow", 569676258},
+  {"Fido's Frisbee", 186519574},
+  {"Staff of Gloomy Grip", 33382711},
+  {"Phoenix", 92142799},
+  {"Ice Blue Rolling Hoverboard", 2605965785},
+  {"Christmas Tree Topper", 19703062},
+  {"Pwny", 26777410},
+  {"Igloo of Solitude", 42200852},
+  {"Farmer's Revenge", 101166419},
+  {"Adurite Katana", 286526176},
+  {"Fencing Foil", 10831489},
+  {"Save the Noobs Protest Sign", 501939119},
+  {"Neon Ninja's Katana", 535104005},
+  {"Twin Kodachi", 51348471},
+  {"Protest Sign: Save the Whales", 15642406},
+  {"Year of the Dog Lantern", 1402292509},
+  {"Orbital Piano Strike", 113299599},
+  {"Amerilaser Blaster", 116693694},
+  {"Pizza Delivery Vehicle", 170983216},
+  {"Redcliff Rogue Sword", 346687946},
+  {"Pumpkinade Launcher", 36913504},
+  {"Dragon's Flame Sword", 168140049},
+  {"Agent 99's Laser Goggles", 100472084},
+  {"Club Boates Disco Ball", 248287898},
+  {"BuildColorTester", 35285400},
+  {"Ninja Sticky Bomb", 64869947},
+  {"Halloween Skateboard", 179369752},
+  {"Tennis Racket", 119917531},
+  {"Arachnix Drone", 89398416},
+  {"Phantom Forces Combat Knife", 880453518},
+  {"Magic Beach Towel", 164369961},
+  {"Sir Scaresalot", 527383094},
+  {"Wizards of the Astral Isles: Frog Transformer", 106781619},
+  {"Ren the Red Fox Ranger Bow", 3798370428},
+  {"Gem Egg Claymore", 1536652210},
+  {"Ne'Kotikoz Phaser", 61459678},
+  {"Heat Seeking Missile Launcher", 67747912},
+  {"Bald Eagle", 120749494},
+  {"EMP Shockwave", 85879435},
+  {"American Rockets 1776", 120749452},
+  {"Bat Burglar", 180298414},
+  {"Video Star Pizza Launcher", 2906721998},
+  {"Pi RAIG Table", 148791414},
+  {"Healing Potion", 11418319},
+  {"Tomahawk", 44084783},
+  {"Bad Luck Sword", 413199928},
+  {"Midnight Motor Madness Scooter", 286527393},
+  {"Emerald Dragon Master Staff", 221241923},
+  {"Happy New Year Lantern", 22152211},
+  {"Sleepy Song Bird", 152233381},
+  {"Balloon Tank", 172249239},
+  {"Golden Rolling Hoverboard", 928805891},
+  {"Golden Dreams Convertible", 1402446243},
+  {"Homemade Jet pack", 243798517},
+  {"Sheriff Steve's Six Shooter", 25317304},
+  {"Black Steel Throwing Bats", 63721700},
+  {"Steamgun", 157265837},
+  {"Millennium Falcon", 1748602670},
+  {"Prismaboard", 166559887},
+  {"Fundroid Blaster", 114562641},
+  {"The United Staff of America", 161219985},
+  {"Earth Protection Orb", 236441643},
+  {"Skeleton King's Sword", 95951291},
+  {"Headless Horse", 1145088814},
+  {"Glorious Eagle Mount", 2014805757},
+  {"Icicle Slicer - A Gamestop Exclusive", 66823689},
+  {"Fancy Skateboard", 101879008},
+  {"Dance Grenade", 65545955},
+  {"Golden Katana of Destiny", 108875151},
+  {"The Overseer's Bow", 101078524},
+  {"Monster Fierce Basher", 204095724},
+  {"Chupacabra", 126704033},
+  {"Spec Zeta Biograft Energy Sword", 66416579},
+  {"My Big Fat Zombie Goldfish: The Seaquel", 149222485},
+  {"Elven Blade of Glory", 22778134},
+  {"Hyperbike", 130113861},
+  {"Epicsauce", 31314931},
+  {"Independence Day Fireworks 2015", 264989911},
+  {"Psychokinesis Glove", 91360081},
+  {"Autumn Oak Staff - A Walmart Exclusive", 96501417},
+  {"Watermelon Launcher", 161230469},
+  {"Emergency Rations", 97885572},
+  {"Golden Staff of Bling Squared", 241542047},
+  {"Track Builder Spiral Stack Up", 223132588},
+  {"Spring Crossbow", 150366320},
+  {"Bombo's Survival Knife", 121946387},
+  {"Chaos Master's Wing Slasher", 87361995},
+  {"WiringTool", 60791862},
+  {"Dragon Companion", 132096824},
+  {"Magical Unicorn", 268533852},
+  {"Battle Elk Mount", 1191143111},
+  {"Blue LAZER Sword", 743691009},
+  {"Hand Cannon", 33867016},
+  {"Tiny Elephant", 1482452608},
+  {"Wizards of the Astral Isles: Pegasus", 106781659},
+  {"Korblox Ice Dragon", 395205954},
+  {"Instant Campfire", 123234510},
+  {"Scepter of Pharoahs", 18482570},
+  {"Scuba Gear Starfish", 845518976},
+  {"Cy the Cyborg - Gun", 2136443074},
+  {"Rockin' Pink Guitar", 193771176},
+  {"Magmarealn Crossbow", 43708954},
+  {"Frozen Throwing Knives", 1215515248},
+  {"Redblox Hatchling - Hatched Egg of Duty", 110704033},
+  {"Ghost Ride", 179369627},
+  {"Lt. Maverick Scout Jetpack", 277963405},
+  {"The Great Sword Justice", 2535472650},
+  {"Hognob", 188498039},
+  {"The Blade of the Federation", 880499904},
+  {"Fortune Cookie", 25684857},
+  {"Witch Wand", 37347098},
+  {"Nerf Zombie Horde Companion", 515688387},
+  {"Tablet of Akmenrah", 186867645},
+  {"Rolling Pin", 11885154},
+  {"Sword of Fiery Justice", 99797381},
+  {"Inugami: Ninja Warrior", 2544539550},
+  {"Midnight Motorcycle", 269179120},
+  {"Attrition Blade", 47871597},
+  {"Beach Bigfoot Surfboard", 2016189421},
+  {"KRE-O Grimlock", 185422750},
+  {"Adurite Skateboard", 2163549594},
+  {"Retro Shrink Ray", 336371164},
+  {"Nerf Zombie Friend", 305943571},
+  {"Human Rocket", 119917487},
+  {"Deluxe Pumpkin Pie", 65969740},
+  {"Vilicus' ROBLOX Tablet", 98253626},
+  {"Opened Basket of Musical Domination", 382837862},
+  {"Protest: More Gear Nao", 16435306},
+  {"Ogre Friend", 116055112},
+  {"Squid Ink Bomb", 118281609},
+  {"Hard Boiled Roadster", 1536053426},
+  {"Mad Murderer Knife", 170997263},
+  {"Atmoblaster 777", 50937815},
+  {"Festive Roped", 139577956},
+  {"Dueling Piano", 283755431},
+  {"7-Eleven Slurpee", 55642223},
+  {"Wild West Sarsaparilla", 58574416},
+  {"simoon68's ROBLOX Tablet", 98970218},
+  {"Poison Picnic", 88143674},
+  {"Deadly Laser Vision Polar Bear Mount", 420160506},
+  {"Police Badge", 82358339},
+  {"Ice Cream", 57902859},
+  {"Joyful Periastron Epsilon", 233520257},
+  {"Trilaser Bow", 138112971},
+  {"Bronze Bloxxer", 172922089},
+  {"Chimp Friend", 22960388},
+  {"Magnificent Lion", 262406189},
+  {"Camping Lantern", 123234545},
+  {"The Necrosapien Staff", 64647651},
+  {"Nuclear Arms", 84419543},
+  {"Thunder Pole - Level Up Exclusive", 65460817},
+  {"Knight's Elder Blade", 48395736},
+  {"Gravitational Radiation Hammer v0.01", 33866846},
+  {"Anti-Ballistics Force Field", 90718618},
+  {"Cherry Pie", 40493590},
+  {"Jack O' Splosion", 62803173},
+  {"Giant Ninja Star", 1304339797},
+  {"Blue Bloxxers Paintball Gun", 26017478},
+  {"Bloxal the Barbarian's Blade", 1377984056},
+  {"Overseer's Steed", 178077177},
+  {"Red Hyperbike", 170896571},
+  {"Pickaxe", 22158176},
+  {"Harvest Wizard's Staff", 2290021705},
+  {"Hiro the Hero Dual Swords", 37583969},
+  {"Bugle", 33683368},
+  {"Spring Sunshine", 150363993},
+  {"Bone Crusher - Mace and Shield", 63253718},
+  {"BANG!", 26419811},
+  {"Winsome Wizard Wand", 32355960},
+  {"Sno-Fuse Bomb", 42200159},
+  {"R80 Launcher - A Walmart Exclusive!", 69209924},
+  {"Bo Staff", 47262951},
+  {"Icy Spiky Club", 44561343},
+  {"Rebel Incinitron 6530", 22920072},
+  {"Orbital Flute Strike", 225921650},
+  {"Pumpkin Sword", 36568418},
+  {"Golden Roped", 361950795},
+  {"Zombie Grip Bomb", 89491407},
+  {"Egglite", 153025459},
+  {"Rey's Lightsaber", 120830973},
+  {"OwnerCameraTool", 65347268},
+  {"Yellow Snowball", 19703476},
+  {"Moose Mount", 2620523875},
+  {"Breath of Fire", 168140516},
+  {"Crimson Double Threat", 22787189},
+  {"Eggveloper Cannon 9002", 4771622762},
+  {"Graffiti Skateboard", 108075172},
+  {"Laser Electrocutor Blade", 50938773},
+  {"Instant Snowman", 1230024207},
+  {"Captain's Flintlock", 17237675},
+  {"Sungrace, the Bo Sword", 2845952487},
+  {"Chalk Sword", 119917556},
+  {"Carrot Slingshot", 738924664},
+  {"The Unstoppable", 24294400},
+  {"Robloxian Clone", 284135286},
+  {"Silver Bloxxer", 172922026},
+  {"Ninja Star Launcher", 2544539843},
+  {"4th of July Fireworks 2018", 2014853076},
+  {"Ice Breaker", 87361862},
+  {"Opened Pastel Basket of Danger", 152173394},
+  {"Crossbling Bow", 346686979},
+  {"Zombie Staff", 26421972},
+  {"Sabertooth Attack Friend", 700400407},
+  {"Colossal Blade", 83704154},
+  {"Are200's ROBLOX Tablet", 99254358},
+  {"ROBLOX U Moped", 176087639},
+  {"Neon Bloxster 2XP", 257812862},
+  {"Shark Warrior Trident", 845527166},
+  {"Guitar of Rock Excellence", 359244394},
+  {"Q-Bot Companion", 2221409781},
+  {"Community Pizza Launcher", 2996732828},
+  {"Fiery Dragon Axe - a Target exclusive item!", 64372659},
+  {"Turkey's Vengeance Sword", 65969704},
+  {"Vampire Hunter's Crossbow", 302030998},
+  {"Faux Firebrand", 31758193},
+  {"Dynamically Lit Bow and Arrow", 160198008},
+  {"Fireball Spell", 2620521684},
+  {"Remote Mine", 33383241},
+  {"Inflatable Saxophone", 2620523077},
+  {"Alvin", 329022047},
+  {"Green All Terrain Vehicle", 264289990},
+  {"Love Hurts Ray Gun", 106064447},
+  {"Father's Day Card 2010", 29100347},
+  {"Arabian Knight Scimitar", 71037076},
+  {"US Military Top Secret Experimental Jetpack", 31314966},
+  {"Horde of Attack Crabs", 472607575},
+  {"CJJs Guide to Making Money", 174418144},
+  {"Z Ray Gun", 65082275},
+  {"Personal Fighter Jets", 343587237},
+  {"RoVacuum 2012", 84418938},
+  {"The Perfect Edge", 2845820064},
+  {"Admin Pizza Launcher", 2996731343},
+  {"Korblox: DeathSpeaker's Zombie Creator", 51760061},
+  {"USA Vuvuzela", 29532111},
+  {"Summer Games Torch", 471030026},
+  {"Mega Annoying Megaphone", 65545971},
+  {"Dual Venomshanks", 158069189},
+  {"Blade of Marmora", 936703279},
+  {"Festive Dueling Piano", 332748371},
+  {"Zombie Slayer", 64735604},
+  {"Toothless", 159913543},
+  {"Throwing Bolts", 1492225511},
+  {"Hanukkah Menorah", 99797327},
+  {"Rising Sun Katana", 67998086},
+  {"The Luck O' the Irish", 74904413},
+  {"Christmas Tree Ornament", 19703046},
+  {"Tribal Spear", 38326003},
+  {"Leprechaun Lucky Sword and Shield", 109583771},
+  {"Ruby Encrusted Sword of the Mighty", 54694311},
+  {"Blue Raspberry Slurpee - A 7-Eleven Exclusive", 85158452},
+  {"Terratronic Power Sword - A Gamestop Exclusive", 91517984},
+  {"Roman Sword and Shield", 1492226137},
+  {"Bigfoot Boarder's Board", 325758098},
+  {"Maviss Slushie", 332774098},
+  {"Zombie Protest Sign", 384721834},
+  {"Bloxdor's Ray Gun", 635616686},
+  {"Scatterblaster", 21420814},
+  {"Ice Potion", 46362414},
+  {"Overseer Warlord's Sword", 483308034},
+  {"Halloween Ray Gun", 183346056},
+  {"One Man Band", 425120575},
+  {"Black Iron Katana", 928914739},
+  {"Turkey Mount", 2568200796},
+  {"Personal UFO", 163352376},
+  {"Everfrost Wizard Staff", 561842836},
+  {"Native Bow and Arrow", 65969750},
+  {"Roboarm", 35366215},
+  {"Skele-chucks", 1088051790},
+  {"Green Epic Sauce", 38861951},
+  {"Summer Games - Soccer Ball", 471751406},
+  {"Dark Avenger's Sword & Shield", 139581823},
+  {"Rockin' Axe", 82707568},
+  {"Airstrike", 88885539},
+  {"BB-9E", 1183007628},
+  {"Dark Spellbook of the Forgotten", 56561579},
+  {"Emerald Knights of the Seventh Sanctum Staff", 128162713},
+  {"Virtual Book - Bad Guys", 2018630652},
+  {"Dark Skeleton Scythe", 302063713},
+  {"Power Gloves", 2713323785},
+  {"BLOXY 2013", 123134886},
+  {"Winter Wolf Warrior's Mace", 193743245},
+  {"Dragonheart Bow", 2560113462},
+  {"Metal Cog Shuriken", 157205818},
+  {"Landmine", 88870392},
+  {"RC Tank", 83021197},
+  {"Baseball Bat", 55301897},
+  {"2011 New Year's Fireworks", 43245080},
+  {"Hammer of Eternal Frost", 71422327},
+  {"Mystical Griffin", 215448210},
+  {"Moanas Paddle", 537436448},
+  {"iLift Three", 743692715},
+  {"Orc Blade", 10469910},
+  {"Fist of Schoolage - Level Up Exclusive", 65469002},
+  {"ROBLOXIAN Healing Orb", 61916132},
+  {"The 7Ds Grumpy", 163488515},
+  {"Wall Walker", 35683911},
+  {"DarkAge Ninjas: Combat Potion", 60888308},
+  {"Body Swap Potion", 78730532},
+  {"Spy All Terrain Vehicle", 2198019650},
+  {"Pirate's Flintlock", 16726984},
+  {"Levitating Staff of the Cosmos", 48596324},
+  {"Keith's Vengeance Launcher", 29532889},
+  {"Clown Bomb", 88146497},
+  {"Viridian Katana", 295461517},
+  {"Luger Pistol", 95354288},
+  {"Bloxster 2X2", 185422205},
+  {"Sand Tempest Scimitar", 12187421},
+  {"Killer Bee Launcher", 163351579},
+  {"Gridiron Guitar", 15470222},
+  {"Christmas Tree Launcher", 330296114},
+  {"Gravity Coil", 16688968},
+  {"Admiral's Cutlass - A Walmart Exclusive!", 52938493},
+  {"Black Hole Sword", 1340206957},
+  {"Star Wars Rebels Chopper", 178400986},
+  {"Stone Hammer", 13207169},
+  {"Summer Hang Glider", 450566409},
+  {"Red Seed", 1645056094},
+  {"Witches Brew", 10727852},
+  {"Red Grind Original Flyer Skateboard", 501753915},
+  {"Midnight Motor Rolling Hoverboard", 439989184},
+  {"Sword of the Waves", 928794651},
+  {"Galactic Soldier's Raygun", 635636987},
+  {"Red Rock Star Guitar", 152187198},
+  {"Katana of the Ninth Moon", 78665196},
+  {"Red Morning Star", 170902990},
+  {"Fire Breathing Friend", 610133120},
+  {"Mardi Gras Sword", 147937443},
+  {"Burrito", 28492363},
+  {"Torch", 31839337},
+  {"MonsterMashPotion", 36042821},
+  {"ALSIceBucketChallenge", 173751087},
+  {"DaggerPunch", 147143881},
+  {"SpookyPumpkinScythe", 2413755690},
+  {"Bike", 189910262},
+  {"YearOfTheMonkeyLantern", 359179463},
+  {"BuildResize", 26738142},
+  {"TurkeyWand", 65979823},
+  {"GoldenSkateboard", 2274759556},
+  {"FantasySpear", 69947379},
+  {"SlappingGlove", 75556791},
+  {"Pen Bomb", 95258668},
+  {"July4thFireworks", 55192815},
+  {"RDC2019WinnerTrophy@Bronze", 3608621618},
+  {"PurpleKeytar", 1678349408},
+  {"BuildermanHammer", 53623248},
+  {"DarkArtSword", 147143863},
+  {"Clover", 74984387},
+  {"TwinSpacePistols", 2569022418},
+  {"JollyJingleLauncher", 2620452349},
+  {"CuddlyCat", 319656339},
+  {"Whistle", 128160832},
+  {"LeopardBalloon", 176087556},
+  {"CandyBar", 39258329},
+  {"Spork", 187458429},
+  {"8BitFairy", 2103276507},
+  {"MariachiGuitar", 26673760},
+  {"Fireworks", 162857391},
+  {"ImaginaryFiend", 2470982537},
+  {"SuperFreezeRay", 185422055},
+  {"SeaWizardStaff", 444457864},
+  {"Trolladad", 119101595},
+  {"NeonMysteryCape", 257813288},
+  {"SpeedyCleats", 718259118},
+  {"RainbowKatana", 158069071},
+  {"ROBLOXWorldTourHotAirBalloon", 116040828},
+  {"RedCliffEagle", 51347716},
+  {"8BitGun", 542755101},
+  {"WizardStaff", 357837444},
+  {"KorbloxBoneMace", 156467855},
+  {"AngelSword", 89203095},
+  {"Werewolf Claws", 95484098},
+  {"SpringLauncher", 150366351},
+  {"XmasCookie", 41855400},
+  {"SuperFlyGoldBoombox", 212641536},
+  {"8BitRoped", 507803661},
+  {"Khopesh", 18481407},
+  {"Rocket1", 29957963},
+  {"CombatMop", 156060467},
+  {"RageTable", 243788010},
+  {"FestiveSentryTurret", 139577997},
+  {"Sparkler", 12562304},
+  {"Windforce", 77443704},
+  {"RedCarpetHoverboard", 1469849512},
+  {"Ocean Samurai", 23306097},
+  {"DucktalesCane", 999860560},
+  {"Skunk", 123234626},
+  {"MilitarySword", 88885401},
+  {"DragonKnightSword", 109364052},
+  {"DeployableSnowPlow", 189910707},
+  {"SerpentSword", 62250882},
+  {"Tombquest Book", 245617341},
+  {"Spraycan NY", 126710875},
+  {"MegabrandsTruck", 183441634},
+  {"UnicornHammer", 1748609996},
+  {"Watermelon", 22787248},
+  {"ElfLauncher", 1241585655},
+  {"Peabody Ship", 142517948},
+  {"Caltrops", 15176169},
+  {"Squirrel Pet", 114687251},
+  {"ADR Book", 82711866},
+  {"SilenceBomb", 104642700},
+  {"OBCGoldSword", 62350867},
+  {"StunGrenade", 88885524},
+  {"DarkageBow", 287426246},
+  {"EgyptianSword", 174752186},
+  {"ROBLOXWorldTourLightningGuitar", 116040887},
+  {"PaperPlaneGear", 21440340},
+  {"EpicLaser", 85879456},
+  {"Mars Mission 1 Blaster", 148017553},
+  {"BaconDaggers", 168142394},
+  {"RockItGuitar", 13477040},
+  {"GhostPotion", 527384527},
+  {"RayGun", 563287969},
+  {"FestiveDualPlungers", 332747438},
+  {"BlueberryPie", 48493658},
+  {"SkullCane", 16435368},
+  {"Dynamite", 12902404},
+  {"BuildInsertTester", 35268363},
+  {"NickTrophy", 1504917437},
+  {"Rocket2", 29959897},
+  {"ZebraPrintLaserGun", 176087466},
+  {"TMNTSkateboard", 93528414},
+  {"RoseLauncher", 146047247},
+  {"FoldingChair", 151291980},
+  {"HandCannon", 48847374},
+  {"Redblox", 101078953},
+  {"Pot O' Gold", 24015579},
+  {"NeonSpaceGun", 1144845319},
+  {"SteampunkSteamGun", 356212933},
+  {"BFG_Book", 424700938},
+  {"ArtichokeMorningStar", 273969902},
+  {"8BitNinjaStar", 3459932051},
+  {"SquidLauncher", 271017537},
+  {"DarkWizardStaff", 718234275},
+  {"RapidCandyLauncher", 181245219},
+  {"TrickOrTreatPillowCase", 182273893},
+  {"GhostShip", 155662051},
+  {"MermaidTears", 71597027},
+  {"WizardWand", 56561607},
+  {"Gunblade", 743692189},
+  {"Redcliff Basket", 229989697},
+  {"BearMineGun", 98718350},
+  {"EvilEye", 59806354},
+  {"HalloweenTrafigurator", 93722515},
+  {"MoanaCompanion-HeiHei", 537436189},
+  {"CardboardGreatSword", 1665541125},
+  {"NinjaDart", 46846074},
+  {"WindSword", 83704190},
+  {"PriateShipWheel", 708968860},
+  {"PinkSparkleTimeHoverboard", 456226536},
+  {"Spiky Mace", 100469994},
+  {"CapnBook", 782684707},
+  {"Bamboo Stilts", 60357980},
+  {"RemoteExplosiveDetonator", 74385399},
+  {"NickelodeonBlimp", 368076589},
+  {"Bobsled", 143606297},
+  {"Korblox Sword", 51751162},
+  {"ROBLOXTablet", 99254203},
+  {"TripleMorningStarFlail", 204095670},
+  {"BONESTAFFSREADY", 93722443},
+  {"Cerulean Vengence", 24713330},
+  {"OversizedCrossbow", 280662667},
+  {"DancePotion", 27858062},
+  {"BB8", 1183007014},
+  {"LightningTrap", 80576913},
+  {"2014BLOXYAward", 162979146},
+  {"TurtleBackpack", 472607336},
+  {"RocketJumper", 169682103},
+  {"RidableFlyingReindeer", 330296266},
+  {"Lightning Orb", 72644629},
+  {"Skis", 143606407},
+  {"Bone & Arrow", 95951270},
+  {"GhostDog", 1427402073},
+  {"HorseshoeNinjaStar", 292046825},
+  {"SnowFlintlock", 325755895},
+  {"RDC2018ParticipationTrophy", 200815070},
+  {"StaffofNeverendingFrost", 66896601},
+  {"Toon Paintball", 172246669},
+  {"SwordOfLight", 77443461},
+  {"BK Book", 294050095},
+  {"ScifiCrossbow", 972187699},
+  {"BubbleTroubleRobot", 1102656209},
+  {"ChiefJustusGavel", 120749528},
+  {"Trident", 38847746},
+  {"ChristmasKatana", 66823631},
+  {"PhoenixSword", 49929767},
+  {"RoboGuitar", 621000617},
+  {"Firework Bundle", 161220652},
+  {"MonkeyPet", 71597072},
+  {"ShoulderCannon", 61963621},
+  {"BunnyBlade", 153939072},
+  {"Descendants-GraffittiSprayCan", 273795070},
+  {"CandyBomb", 181245120},
+  {"Radical Orange Skateboard", 23155792},
+  {"Red Knight Sword", 1694623317},
+  {"Chartreuse Periastron", 80661504},
+  {"Glider", 162857268},
+  {"Sparkle Shooter", 20048880},
+  {"Ban Hammer", 10468797},
+  {"AOR Book", 253485047},
+  {"Hot Wheels", 152660131},
+  {"Ice Sword", 280662903},
+  {"Bloxxy Radar", 29532138},
+  {"Improved Grapple Hook", 96228438},
+  {"2019 Admin Launcher", 3839392931},
+  {"Keytar Sword", 1789547756},
+  {"Hot Wheels Street Hawk", 184758255},
+  {"Sorcus Chair", 96895842},
+  {"Ninja Claw", 254608905},
+  {"Water Sword", 241017568},
+  {"Universe Sword", 566780253},
+  {"Throwing Octopus", 405996670},
+  {"Mardi Gras Laser", 147937377},
+  {"Overseer Hammer", 335085355},
+  {"Panda Plushie", 46846246},
+  {"Eighties Boombox", 151777652},
+  {"Grannys Cross Bow", 16986649},
+  {"Two Seater Rainbow Magic Carpet", 477910063},
+  {"EKoSS Bow And Arrow", 223785350},
+  {"Carnagecopia", 98346415},
+  {"Giant Angelic Sword", 184758713},
+  {"Skateboard Tool", 501966315},
+  {"Salmon", 75906942},
+  {"Festive Periastron", 139577901},
+  {"Fall Knight Sword", 172289170},
+  {"Battle Sleighs", 41855117},
+  {"Christmas Stocking", 139308319},
+  {"Kylo Lightsaber", 1208308505},
+  {"An Alpaca You Know", 202960139},
+  {"Tixbomb", 196442347},
+  {"Cowbell", 20373160},
+  {"Inferno Sword", 83704169},
+  {"Big Hero 6 Baymax Minion", 209298837},
+  {"Pete's Dragon - Trophy", 467189371},
+  {"Keith Elf", 68354853},
+  {"Hulk Fists", 1076255449},
+  {"Penguin Pet", 172248941},
+  {"Super Hero Potion", 76262706},
+  {"Foam Finger", 21439965},
+  {"Santa's Jet Pack", 67319400},
+  {"Emerald Spells", 128162639},
+  {"Orinthian Jetpack", 359178822},
+  {"Red Retro Raygun", 392057539},
+  {"Beach Umbrella", 112593662},
+  {"Cat Guitar", 835779898},
+  {"Medusa Head", 89487934},
+  {"Outfit Controller", 91368052},
+  {"Yellow Red Card", 28657306},
+  {"Gravity Bomb", 74385438},
+  {"Fire Axe", 181550181},
+  {"Ranger's Apprentice", 164017827},
+  {"Red Laser Scythe", 1609408185},
+  {"Dragon Spear", 1320966419},
+  {"Invisible Car", 129471151},
+  {"Dusekkar Sword", 501942750},
+  {"Long-Range Proton Crossbow", 76596269},
+  {"Scifi Crossbow", 76492358},
+  {"Fairy Wand", 939160890},
+  {"Fake Chartreuse Periastron", 80597060},
+  {"R2D2", 1183008259},
+  {"Poison Fowl", 170896041},
+  {"Kung Fu Panda 3 - Bao Companion", 334620158},
+  {"Seagull Friend", 271017217},
+  {"Jingle Stick", 19397135},
+  {"Touchdown Football", 101078911},
+  {"Orinthian Mace", 92627988},
+  {"Giant Dino Feet", 206136532},
+  {"Harpoon Gun", 118281529},
+  {"We Bare Bears - Bearstack", 270560835},
+  {"Winter Warlock Wand", 2646396550},
+  {"Voltron Sword", 427947884},
+  {"Dance Blaster", 45941451},
+  {"Xanwood Katana", 489196923},
+  {"Heat Missile Launcher", 110337853},
+  {"Broomstick", 36013601},
+  {"Korblox Basket", 230758601},
+  {"Glider", 92142950},
+  {"Fire Staff", 32858741},
+  {"EKoSS Glaive", 1587165780},
+  {"Quantum Entangler", 72644644},
+  {"Scary Pirate Sword", 405991634},
+  {"Mahjong Sword", 46132987},
+  {"Dual Golden Super Fly Boombox", 409746854},
+  {"ROBLOX Tablet", 99641902},
+  {"Build Configurator", 16975388},
+  {"Cobra Star", 22788064},
+  {"Snake Spiral Knife", 22769079},
+  {"Clapboard", 1469850646},
+  {"Space Sandwich", 12547976},
+  {"Chinese Lantern", 70476451},
+  {"Black Iron Grapple Hook", 286526788},
+  {"Snow Knight Lance", 583007300},
+  {"Ape Arms", 126719120},
+  {"Boulder Breaker Club", 1466341532},
+  {"Cauldron", 56561570},
+  {"Bloxilicious Bubble Gun", 11895530},
+  {"Glorious Sword", 1760466591},
+  {"Spear", 62358846},
+  {"Ghost Minion", 179369400},
+  {"Rukiryo Cat", 292969932},
+  {"Prepaid Best Buy Card", 27821008},
+  {"Alpaca Mount", 346085995},
+  {"Dogman Book", 491599826},
+  {"Subspace Debonair Disguise", 48596330},
+  {"Config Tool", 73889239},
+  {"Vampire Vanquisher", 94794847},
+  {"Sword Of The Land", 183826384},
+  {"Classic Tool", 58921588},
+  {"Blinding Light Axe", 183665514},
+  {"Super - GL533 Disruptor", 14516975},
+  {"Stamper Tool", 55028088},
+  {"Knights Sword", 18831509},
+  {"Stop Sign Axe", 522587921},
+  {"Giant Skeleton Hand", 181469107},
+  {"United Sword of America", 108158439},
+  {"Giant Blade", 96669697},
+  {"Sword Cane", 501755654},
+  {"Nuclear Winter Gun", 22971409},
+  {"Tiger Sword", 176087505},
+  {"Ice Spell", 1241586091},
+  {"Rotorcycle", 122278149},
+  {"Snowman Sword", 186959114},
+  {"Redcliff Dog Companion", 395449601},
+  {"Viridian Throwing Knives", 629895007},
+  {"2012 Fireworks", 67747884},
+  {"Minions - Vive Le Minion Sword", 261826521},
+  {"Attack Doge", 257818065},
+  {"Crayola Crayon Carver", 300436644},
+  {"Stick", 124128001},
+  {"Pizza Kunai", 553937180},
+  {"Walmart - Racecar", 264290413},
+  {"Saxophone", 30393653},
+  {"Bone Cage", 63253706},
+  {"Elf Bow And Arrow", 492979024},
+  {"M1 Garand", 94233286},
+  {"Protest Blame John", 2592617},
+  {"Valentines Cake", 146857771},
+  {"Black And White Penguin Launcher", 192537346},
+  {"Halloween Sparkler", 182273948},
+  {"Light Face Melting Guitar", 135472231},
+  {"Falchion", 188149201},
+  {"4 - String Roblocaster Premiere Guitar", 14492601},
+  {"Green Sword", 225921137},
+  {"jmarghs Arm Cannon", 151311701},
+  {"Pencil Sword", 238518978},
+  {"Dino Sword", 206136361},
+  {"Illumina", 16641274},
+  {"Robot Spider", 300410436},
+  {"Meteor Staff", 87361806},
+  {"Fabrege Egg Cloner", 152823228},
+  {"April Showers", 111876831},
+  {"Easter Egg", 58454086},
+  {"BatPotion", 63721732},
+  {"The Archon Blade", 105430216},
+  {"Ninja Jump Potion", 46846115},
+  {"Champion Egg Beater Sword", 383609201},
+  {"Blizzard Wand", 68354832},
+  {"Skyboundless Hoverboard", 1665540132},
+  {"Ocherous Katana of the Setting Sun", 25545009},
+  {"Silver Speedster Convertible", 1929597345},
+  {"Pompous, the Cloud", 107458483},
+  {"Double Fire Laser Gun", 183355092},
+  {"Battling Boy", 132870835},
+  {"Njay's Web Blaster", 53623295},
+  {"Stone Roped", 709399046},
+  {"Splinter's Staff", 93667422},
+  {"Battle Wagons!", 27471370},
+  {"Han Solo's Dice", 1748604797},
+  {"Menacing Mage Energy Ball", 357834584},
+  {"Red Balloon", 27477255},
+  {"Teddy Trap", 12890798},
+  {"Mechatronic Spider", 116040789},
+  {"Fang Of Anansi", 116693735},
+  {"R-Orb", 98411393},
+  {"Face Off Potion", 36568384},
+  {"Historic 'Timmy' Gun", 116693704},
+  {"Exploding Arrow Crimson Crossbow", 221173389},
+  {"Double Bladed Hand Axe", 12775410},
+  {"Knights of the Splintered Skies: Morning Star", 55917400},
+  {"Present Launcher", 56967090},
+  {"Sword of Glowing Hope", 431038614},
+  {"The Big One!", 162857422},
+  {"Magmarealm Spear", 43708943},
+  {"2010 Fireworks", 20064127},
+  {"Telewarp", 97311402},
+  {"The 70s Magical Royal Ruby", 164016477},
+  {"Happy New Year Horse", 144980658},
+  {"Mindgrapes", 16951083},
+  {"Spiral Knight Crossbow", 108234775},
+  {"Sorcus Stool", 110703943},
+  {"Pi Slicer", 148812192},
+  {"Star Hammer", 45513203},
+  {"Scary Gremlin", 181196090},
+  {"Bloxster 2XH", 158069143},
+  {"Freezing Elf's Ice Sword", 121338821},
+  {"Bombastic Katana", 255800577},
+  {"Midnight Sword", 160198658},
+  {"Boss Bunny Bow and Arrow", 228589017},
+  {"Patriot's Monster Truck", 161282711},
+  {"Overseer Mace", 983197575},
+  {"Mystic Sword of the Flames", 241511828},
+  {"Scaley, the Dragon", 110702207},
+  {"Skeleton Bomb", 95951369},
+  {"Earth Summoning Horn", 236403380},
+  {"Heart Air Balloon", 215354986},
+  {"Indonitus Leo: A Walmart Exclusive Item", 64870009},
+  {"ROBLOX Egg Launcher 2017", 709229848},
+  {"Neon Tiger Mount", 2836533679},
+  {"Trip Wire", 97885289},
+  {"Skipper Seal", 155696189},
+  {"The Adventures of Noob Boy: Part 1", 33867401},
+  {"Korblox Ice Claws", 223785005},
+  {"Snowped", 1230027322},
+  {"Inflatable Sword", 1566608167},
+  {"Tempest Blades", 68478587},
+  {"Amethyst Periastron Kappa", 93136802},
+  {"Rubber Chicken Wand", 75550883},
+  {"Exploding Pumpkins", 511931885},
+  {"Epic Duck Roped", 163995329},
+  {"Dual Wield Ninja Scythes", 754871615},
+  {"Azure Mines Pickaxe", 583030187},
+  {"Snow Fiend's Daggers", 188868661},
+  {"Captain Steelshanks Recruiting Staff", 71597060},
+  {"BuildSurfaceTest", 35226946},
+  {"Radiant Seahorse", 271017937},
+  {"Flying Carpet of Books", 498752764},
+  {"Will Wilder Book", 379098145},
+  {"Dragonshead Cannon", 70476425},
+  {"8-Bit Phoenix", 163355404},
+  {"Knights of Redcliff: Deluxe Sword and Shield Set", 127506364},
+  {"Hockey Stick", 142498184},
+  {"Ninja Whip", 255800146},
+  {"Steampunk Slasher", 1380788230},
+  {"Spikesplosion", 73888479},
+  {"Exponential Rocket Launcher", 90718505},
+  {"Winged Magical Staff", 746686384},
+  {"Azure Dragon's Magic Slayer", 268586231},
+  {"Emerald Claw: The Envious Club", 675312894},
+  {"Fire Breathing Dragon Friend", 45941397},
+  {"Galactic Laser Gun", 168143042},
+  {"Red Convertible", 164207588},
+  {"First Class Fencing Sword", 88146480},
+  {"Spec Beta Biograft Energy Sword", 14876573},
+  {"Summertime Water Balloon", 888432781},
+  {"Tiger Warrior Club", 1016512413},
+  {"Quick Potion", 20642023},
+  {"Paint Bucket", 18474459},
+  {"Trench Warfare Shotgun", 94233344},
+  {"Super Slash Cat Claws", 295460702},
+  {"Fanciful Leprechaun Walking Cane", 2907611562},
+  {"The Midas Glove", 17407931},
+  {"Fusion Gatling Blaster", 298087401},
+  {"Eggray 2014", 152822847},
+  {"Solid Gold Skateboard", 398675508},
+  {"2016 Fireworks", 335087161},
+  {"Space View-Master", 313532292},
+  {"iLift Two", 233520425},
+  {"Noisemaker", 200560642},
+  {"4th Annual Bloxy Award", 549914888},
+  {"Brilliant Throwing Knives", 208659586},
+  {"Hedgehog Horde", 243788599},
+  {"Steelshanks Armament", 71597048},
+  {"Ghost Bag", 17527921},
+  {"Nerf Candy Basket", 515687925},
+  {"Black Iron Mace of Pwnage", 10730984},
+  {"Portable Reach", 162857357},
+  {"Atomizer", 35293856},
+  {"Hot Potato", 25741198},
+  {"Flayed Rats", 3381451677},
+  {"Silver Crossbow", 174752245},
+  {"Common Egg Compass - Egg Hunt 2013", 110337828},
+  {"Bladed Tutu", 168141496},
+  {"Flying Magic Carpet", 71037028},
+  {"Dark Summoner Staff", 512422543},
+  {"Ram Mount", 1191128759},
+  {"Deluxe Coil Gun", 503957396},
+  {"2014 Fireworks", 139593916},
+  {"USA Sparkler 2015", 264998648},
+  {"Cartoon Network Skateboard", 164015715},
+  {"The Specialist's grenade", 232522034},
+  {"Bluesea Soarer", 846784018},
+  {"The General's .45", 97885508},
+  {"R0b0-Penguin", 253510291},
+  {"Sophisticated Blade", 108148416},
+  {"Scythe of Singularity", 50938765},
+  {"Crimsonwrath: The Red Wrath", 402304782},
+  {"Bat-tle Axe", 2409286586},
+  {"Ro'k Guitar", 18482562},
+  {"Winter Adventurer's Sword", 431047232},
+  {"Frostbrand", 32858586},
+  {"Merely's Web Slinger", 169602018},
+  {"Deluxe Snowball Cannon 3000", 67755182},
+  {"The Christmas Creep", 42067245},
+  {"Golden Fleece", 123042140},
+  {"PumpKing Chopper", 246303263},
+  {"Cheezburger", 16726030},
+  {"Autumn Elf's Enchanted Dagger", 431042935},
+  {"Opened Basket of Delicate Flight", 382837475},
+  {"Redcliff Battleaxe", 903199054},
+  {"Go Fish", 58574452},
+  {"Protest Sign: We'd Rather Have User GUIs Later...", 15973059},
+  {"Bug Juice", 57229313},
+  {"Alien Parasite", 76170515},
+  {"Intern Racing Chair 2014", 169602300},
+  {"Telamon's Foe Hammer", 53623350},
+  {"Katana", 11453385},
+  {"Black Panther - Dagger", 1363019628},
+  {"Redcliff Elite Sword", 483308081},
+  {"Ancient Dragon Firecracker", 891900286},
+  {"Shadow Master Katana", 121121915},
+  {"Geolocator", 15668963},
+  {"Nerf Blaster", 515687734},
+  {"Wizard Flight Spell", 461489120},
+  {"Molecular Atomizer", 94119269},
+  {"The Awe Star", 18019691},
+  {"Spring Sword of Growth", 48159731},
+  {"Skeleton Scythe", 95951338},
+  {"d4rk886's ROBLOX Tablet", 97932897},
+  {"Cymbals", 163348987},
+  {"Korblox Mage Staff", 127586105},
+  {"Killer Whale Launcher", 188643628},
+  {"Ghastly Ghoul Gun", 131372632},
+  {"Lance's Energy Blaster", 936703828},
+  {"Maraca", 21351465},
+  {"Retro Candy", 65079094},
+  {"Goala Cola", 28672001},
+  {"Polar Bear Cub", 93709266},
+  {"Egg Cannon 2013", 110337884},
+  {"Untimely Crossbow", 58574431},
+  {"Worldwide Stunna", 233633874},
+  {"Opened Sparkle Basket of Bunny Time", 152822815},
+  {"Eggmin Cannon 9000", 4771619789},
+  {"Trollamon", 105189703},
+  {"The Dragon Eye", 257807125},
+  {"Snowglobe of Childhood Memories", 19381970},
+  {"Sword of the Summer Sun", 54694329},
+  {"Intergalactic Sword", 170903610},
+  {"September Promo Placeholder", 91445660},
+  {"Hypobike", 1789546750},
+  {"Opened Chosen Basket of the Overseer", 230729032},
+  {"Skeletal Scythe", 2506365260},
+  {"Freeze Ray", 26013203},
+  {"Sleep Wand", 141759818},
+  {"Pumpkin Pi", 16985863},
+  {"Frozen Flail", 186958663},
+  {"The 5th Annual Bloxy Award", 1469987740},
+  {"Tough Chicks Throwing Stars", 228588772},
+  {"Crash", 93746675},
+  {"Astral Cloak of Transportation", 114020530},
+  {"Bunny Ninja Master Sai", 233519998},
+  {"Dual Katanas of the DarkAge Clan", 86494914},
+  {"2019 Spinning Noisemaker", 2620441860},
+  {"Knights of Redcliff: Morning Star", 49929740},
+  {"Lepremon", 149638899},
+  {"Holiday Ray Gun", 99206951},
+  {"Disco Ball", 147937284},
+  {"Sorcus's Scythe Of Death", 134189039},
+  {"Wanwood Sword Cane", 501940219},
+  {"Classic Bionic Arm", 2535479252},
+  {"Gamaboi", 66426103},
+  {"Super Strong Man", 121385328},
+  {"Light's Reflection Sword", 183665594},
+  {"Primeval Crossbow", 206566653},
+  {"Tic Tac Toe Board", 16924676},
+  {"Metal Fists", 183355969},
+  {"Puppet Master", 91360828},
+  {"Mike's Bike", 3381453136},
+  {"Roblox Character Encyclopedia", 254985282},
+  {"Stealth Ninja Potion", 86492467},
+  {"Lunar Lander 2D Game", 85145662},
+  {"Star Creaeggtor Cannon 9001", 4771621161},
+  {"War Turkey", 18466105},
+  {"Overseer Spider Mount", 306163602},
+  {"Fruity Pebbles Power Up", 439387591},
+  {"8-Bit Frog Friend", 860123788},
+  {"Jumanji Rhino", 1178843200},
+  {"Egg Launcher 2015", 220289039},
+  {"Spinning Robot Helmet", 467137230},
+  {"Sports Victory Blaster", 75550907},
+  {"Flak Cannon", 78005022},
+  {"Tri-Laser 333", 139578267},
+  {"Laser Gun of Tomorrow", 336370943},
+  {"Snowball", 19328185},
+  {"Snow and Arrow", 186868641},
+  {"Katana of the Golden Snake", 435116027},
+  {"Cavalry Sabre", 14719505},
+  {"Terratronic Ray Gun - A Walmart Exclusive", 91518057},
+  {"Hot Pepper Launcher", 273970482},
+  {"Electrowarrior Boomerang", 315565799},
+  {"Math Homework", 22788162},
+  {"Bat Sword", 16433862},
+  {"Leland the Lolturtle", 15731350},
+  {"Magician's Cloak", 212296400},
+  {"Smashing Guitar", 201756469},
+  {"Bluesteel Katana", 243791145},
+  {"Captain Skeledeath's Axe", 188644771},
+  {"S-70 Speed Stunter", 88885497},
+  {"Ninja Battle Hog Mount", 1304344132},
+  {"Ultraviolet Blaster", 283756608},
+  {"Orinthian Crossbow", 1587175238},
+  {"Robloxian Battle Shield", 398122908},
+  {"Tiger Skin", 90211299},
+  {"Lightning McQueen Companion", 790979662},
+  {"DailyBasis' ROBLOX Tablet", 99254241},
+  {"Valiant Adventurer Sword", 124908320},
+  {"Not-so-friendly Ghost", 126719093},
+  {"Grapple Hook", 30393548},
+  {"Party Blaster Paint Gun", 456221232},
+  {"Business Cat's Business Briefcase", 939151100},
+  {"Voltron Paladin's Weapon", 427948672},
+  {"Noxious Chocolate", 106064215},
+  {"Vaulting Pole", 88143166},
+  {"Woodland Archer Bow", 292044716},
+  {"Emerald Hyperbike", 286799274},
+  {"Redcliff Ballista", 156467963},
+  {"BuildPaint", 58901481},
+  {"Red Pirate Juice", 25535467},
+  {"ROBLOXIAN Damage Orb", 103338520},
+  {"Smashing Drum", 139578661},
+  {"ROBLOX 7-Eleven Card", 36042596},
+  {"Staff of the Woodlands", 11373617},
+  {"The Pharaohs Guard Sword", 317593302},
+  {"Dragon Slayers Sword and Shield", 73232803},
+  {"Steampunk Attack Birds", 356212121},
+  {"Crescendo, The Soul Stealer", 94794774},
+  {"Dragon's Blaze Dagger", 105351503},
+  {"Bag O' Noobs", 32355759},
+  {"Deluxe Green Roped", 1033137155},
+  {"Time Bomb", 80576052},
+  {"Teddy Bloxpin", 12848902},
+  {"Awesomesplosion 2010", 29959708},
+  {"Golden Bow and Arrow", 204485737},
+  {"Anti-Gravity Acorn", 460099981},
+  {"Super Freeze Ray 2011", 42845853},
+  {"Sword of Nefertiti", 21802000},
+  {"DarkAge Ninjas: SunFire Scroll", 60888200},
+  {"Azurewrath's Return", 59190543},
+  {"Golden Chakram of the Sky Palace", 47597760},
+  {"Pogo Stick", 420161128},
+  {"Rainbow Fireworks", 462294549},
+  {"Great White Mount", 1990279115},
+  {"Implosion Bomb", 108875216},
+  {"Neon Laser Launcher", 1180417820},
+  {"Rainbow Disco Hyperbike with Sidecar", 477911027},
+  {"Diablo Bow", 1180418251},
+  {"Christmas Tree Lights", 19703041},
+  {"Spider Morning Star", 382286931},
+  {"Kunai", 47262108},
+  {"Subspace Tripmine", 11999247},
+  {"Pigs Boson Collider", 88143093},
+  {"Spooky Spectral Attack Lollipop", 246363230},
+  {"Ezra's Trusty Lightsaber", 250487413},
+  {"Nightfall Elixir", 94333290},
+  {"Sword of the Winter Winds", 42847923},
+  {"Battle Axe", 27171403},
+  {"ROBLOX Skateboard", 27002303},
+  {"Black Panther - Spear", 1363011928},
+  {"Shuriken of the Clan of the Crescent Moon", 65546284},
+  {"All Hallow's Sword", 181356054},
+  {"Spine-Chilling Sword", 181469279},
+  {"Pumpkin Bucket", 17527923},
+  {"Neon Nate: The Horse Lord", 321345839},
+  {"Aluminium Selfie Stick", 939131179},
+  {"Scepter of Divine Indignation", 35682284},
+  {"Drachenstein The Guardian", 70476446},
+  {"Resize Tool", 16969792},
+  {"Fire Extinguisher", 31839411},
+  {"Chocolate Bunny", 24791472},
+  {"Robot Friend", 45513247},
+  {"Joint Breaker", 83704179},
+  {"Orinthian Electroslasher", 287424278},
+  {"Model Dragger", 16200199},
+  {"8-Bit Pumpkin Launcher", 1132807630},
+  {"Zombie Axe", 93536785},
+  {"Hyperlaser Gun", 130113146},
+  {"Bunny Roped", 233657188},
+  {"Hot Chocolate Launcher", 143606363},
+  {"Dusek Car", 42845684},
+  {"IntergalacticKnightSword", 278009025},
+  {"Rocket Skateboard", 1340206298},
+  {"Starblox Latte", 15932306},
+  {"Bunny Laser", 387286257},
+  {"Spec Gamma Biograft Energy Sword", 21416138},
+  {"Trophy of Wheeled Participation 2014", 148790984},
+  {"Zombie Launcher", 93536844},
+  {"Chocolate Gelt", 41457719},
+  {"Egg Cannon 2014", 152823505},
+  {"Machete", 14131296},
+  {"Insert Tool", 21081552},
+  {"Angalacon's Crossbow", 101715440},
+  {"2019 Fireworks", 2620478482},
+  {"Blue Rolling Hoverboard", 2358119937},
+  {"Flying Vacuum", 313547087},
+  {"Pinata Mount", 1708354246},
+  {"Princess Mischief's Wand", 49491716},
+  {"Metal Guitar of Awesomeness", 60678464},
+  {"Paper Sword", 57229357},
+  {"Polar Bear Attack Claws", 187688069},
+  {"School's Out Launcher", 425121415},
+  {"Atomic Disintegrator 3100", 13838639},
+  {"Evil Duck Roped", 300410799},
+  {"Icicle Cannon", 28519646},
+  {"Monster Attack", 126719148},
+  {"Shark Launcher", 83021217},
+  {"Bloxy Cola", 18472779},
+  {"Terratronic Health Core", 91450602},
+  {"ROBLOX Winter Games 2014 Bronze Trophy", 146026994},
+  {"Panda's Cellphone", 270562881},
+  {"Sword Cane", 25740834},
+  {"Microscope Launcher", 2316759785},
+  {"Plad's ROBLOX Tablet", 98253569},
+  {"Staff of Azure Ever Ice", 32858662},
+  {"Staff of Eggstra Large Eggs", 228588531},
+  {"Military Remote Control Plane", 103234612},
+  {"Rocket Sled", 327365543},
+  {"Static Shock Sheep", 621089209},
+  {"Snowflake Shield and Sword", 583157224},
+  {"Winterfang: The Fateful", 835780776},
+  {"Flame Ronin Katana", 128208615},
+  {"Cupcake Launcher", 24399318},
+  {"Firebrand", 81154592},
+  {"Salute", 79446433},
+  {"The Reaper's Double Scythe", 431044405},
+  {"Binoculray", 27133214},
+  {"Red Energy Sword", 68233670},
+  {"CocoWHAAA?", 24396804},
+  {"Dual Axe Monsters", 319656563},
+  {"RC Tiny Tank", 277954704},
+  {"Neon Throwing Stars", 183665171},
+  {"Material Tool", 16200420},
+  {"Ruler", 26945832},
+  {"Knights of the Splintered Skies: Wind Summoner", 127506257},
+  {"Game Studio Executive Breifcase", 131601006},
+  {"Super Speedy Purple Potion", 154727251},
+  {"Glory Launcher 2012", 74385418},
+  {"Penguin Horde Attack", 187840979},
+  {"Garlic Necklace", 37694914},
+  {"Ghostwalker", 37816777},
+  {"Seashell Snare", 54130537},
+  {"Skeletal Sword", 185351572},
+  {"BuildRotate", 73089214},
+  {"Atmoshocker", 73829214},
+  {"Santa's Grappling Gun", 43567614},
+  {"Double-Bladed Scythe", 517827255},
+  {"Rare Egg Cloner 2014", 152824174},
+  {"Instant Treehouse", 119917513},
+  {"Robo Arm Cannon", 858740936},
+  {"Tiger Friend", 78367424},
+  {"Ghostly Possessed Sword of Terror", 244588491},
+  {"Zombie Bomb", 93536827},
+  {"Discus 2012", 88885268},
+  {"Uppercut Sword", 93136674},
+  {"Lucky Throwing Axes", 380204314},
+  {"Zoom Broom 5000", 511030668},
+  {"Ridable Raptor", 190094270},
+  {"Teapot Launcher", 176040984},
+  {"ROFL Waffle", 21064230},
+  {"ROBLOX U Foam Finger", 176219131},
+  {"Nova Wand", 27860496},
+  {"The Tormentor's Axe", 61459718},
+  {"Ye Old Fire Breath Potion", 163350205},
+  {"Rail Runner 5000", 79446473},
+  {"Dubstep Boombox", 84417201},
+  {"Redcliff Crossbow", 178076831},
+  {"MonStar", 454733927},
+  {"Flowersplosian", 25967631},
+  {"Snarffle from Alien on a Rampage", 82711870},
+  {"Stinky Underwear Launcher", 121385230},
+  {"Wraith's Screech Potion", 73232825},
+  {"Staff of Sparks", 10760425},
+  {"Sci-Fi MedVac 4300", 78005082},
+  {"Deluxe Pirate Hook", 754069699},
+  {"Omega Rainbow Sword", 287426148},
+  {"Nate the Neon Cheetah Mace", 2528612002},
+  {"Sharp Looking Hat - the Gear", 100472063},
+  {"Ornate Katana", 2222652960},
+  {"Zombie Dog", 121385262},
+  {"Marshmallow Shooter", 904534058},
+  {"Christmas Tree Sword", 189756588},
+  {"Giant Bat Mount", 2409207383},
+  {"Music Blaster", 152187131},
+  {"Attack Raccoon", 450565762},
+  {"Knights of the Splintered Skies: Hydrian Elixir", 55917420},
+  {"Color Paintbrush", 16200373},
+  {"Spider Slasher", 302502491},
+  {"Sword Of The Behemoth - a Walmart Exclusive", 93725362},
+  {"Speedy Hiking Boots", 904534702},
+  {"Banjo", 12909278},
+  {"Chakran", 18479966},
+  {"Megaphone", 44116233},
+  {"Golden Steampunk Gloves", 243790334},
+  {"Black and White Sword", 191261939},
+  {"Hatched Walking with Dinosaurs Super Egg", 135949881},
+  {"Dual Spec Gamma Biograft Energy Sword", 335086410},
+  {"Tornado Summoner", 102706454},
+  {"Battle Slingshot", 125013799},
+  {"Wooden Sword", 12145515},
+  {"TheGamer101's ROBLOX Tablet", 97886108},
+  {"Protest: ROBLOXians Against SOPA", 76353298},
+  {"Attack Sloth", 880506541},
+  {"Golden Cobra Staff", 85158872},
+  {"Sword of the Epicredness", 469745306},
+  {"nygame43's ROBLOX Tablet", 98341183},
+  {"Count Bloxula Sword", 1076457286},
+  {"Sword of the Autumnal Winds", 40493542},
+  {"Opened Cool Egg Basket of Spring", 152173333},
+  {"Opened Retro Egg Basket of I Has", 152971952},
+  {"Laservision Shades G3", 69499452},
+  {"Winter Snow Sled", 99119261},
+  {"Annoying Elf: Finsurf", 67798397},
+  {"Blue Yonder", 23153735},
+  {"Hunks Energy Cannon", 936704694},
+  {"Trophy of Participation 2016", 401277404},
+  {"Knife of lolololeris", 1856115349},
+  {"Staff of Staff", 151292047},
+  {"Riddling Skull Sword", 37821990},
+  {"Gamora's Sword", 725802546},
+  {"8-Bit Duck Friend", 542184488},
+  {"Seranok's Golden Chalice of Fame", 124126528},
+  {"Red Hyperlaser Gun", 212296036},
+  {"DarkAge Kunai", 341100703},
+  {"Grim Axe", 107458531},
+  {"Leprechaun Vine Scroll", 109583797},
+  {"Wooden Mallet", 75906973},
+  {"Adventure Island", 90242059},
+  {"Tiny Pony Stampede", 257342981},
+  {"Gold Microphone", 939148317},
+  {"Emerald Scatterblaster 2000", 22969230},
+  {"Jovial Jester's Staff", 1377987605},
+  {"An Elegant Blade", 44561450},
+  {"Advanced Exploding Lab Table", 503955938},
+  {"Call Me Cellphone", 88146505},
+  {"Knights of Redcliff: Battle Axe", 49929724},
+  {"Anchor Cannon", 155662087},
+  {"Celestial Staff", 89203070},
+  {"Gork, Your Caveman Shoulder Friend", 33732371},
+  {"Civil War Artillery", 174752553},
+  {"enyahs7's ROBLOX Tablet", 99618601},
+  {"Overseer's Axe", 127506324},
+  {"Heartbreaker", 72069888},
+  {"Cobalt Interplanetary Light Sword", 2350122208},
+  {"Boxing Glove Launcher", 168142620},
+  {"Dark Alien Hatchling", 69567879},
+  {"ROBLOX Toys R Us Card", 35809502},
+  {"EKoSS Sword and Shield", 178076749},
+  {"Evil Knight Sword", 1060280135},
+  {"R-80", 12562495},
+  {"Gigantic Bat Wings", 107473432},
+  {"SeaHorse", 118281490},
+  {"DarkAge Assassin Crossbow", 86492583},
+  {"Nonmagic Carpet", 402305186},
+  {"8-Bit Wizard Staff", 3459922232},
+  {"Rogue Bottington Steampunk Zapper", 2291005315},
+  {"Flame Guard General Sword", 658805662},
+  {"Quadshooter", 163351966},
+  {"Flaming Halberd", 168140813},
+  {"Spring-loaded Jumping Stilts", 226206639},
+  {"Galactic Forcefield Glove", 85879447},
+  {"Green Flashlight", 2846003729},
+  {"Beach Battle Sword", 112591894},
+  {"Ego Expander 2400", 26774629},
+  {"Troll Summoner", 181245094},
+  {"Bluesteel Midas Hand", 163354553},
+  {"Bamboo Katana", 21754543},
+  {"Future Hammer", 972189904},
+  {"Heathers Boots", 257837994},
+  {"Robux Blaster", 674104921},
+  {"Monster Axe", 89487903},
+  {"RDC 2019 Champions Trophy", 3600625118},
+  {"Candy Cane", 19382857},
+  {"Regeneration Coil", 119101539},
+  {"U.Fun.0", 566780416},
+  {"Giant Iron Sword of Sundering", 71422340},
+  {"Fabrege Cloner - Egg Hunt 2013", 110337782},
+  {"Sinister Flying Magic Carpet", 103235041},
+  {"Fake c4", 104642566},
+  {"Green Elf Bow", 346687267},
+  {"Jungle Guitar", 13206850},
+  {"HEX Spitter", 243007180},
+  {"Larrys Night Guard Flashlight", 186867693},
+  {"Cloak of the Undying", 94794833},
+  {"Knights of the Seventh Sanctum : Dual Duel Axes", 69947367},
+  {"Orinthian Blaster 3777", 92628074},
+  {"Fermion Blade", 50938746},
+  {"Korblox Krossbow", 50805584},
+  {"Bacon Launcher", 173781053},
+  {"Rainbow Blaster", 427949130},
+  {"Nerf Shoes", 108899214},
+  {"Protest Sign: Save the Zombies", 21440120},
+  {"Poisoned Apple", 64447610},
+  {"Deluxe Luxury Magic Sled", 2620461289},
+  {"Arctic Fox Tail", 188853857},
+  {"Brighteyes's Sparkling Shillelagh", 53130850},
+  {"Sorcus' Sword of Judgement", 53623322},
+  {"Gigantoform", 72713855},
+  {"Opened Delicious Basket of the Crispiest Chicken", 382837706},
+  {"Maniacal Pumpkin Bomb", 14130887},
+  {"Frozen Fury of the Bloxian Order's Smoke Bomb", 209980135},
+  {"Trick or Trap Jackolantern", 180300142},
+  {"Rukiryo's ROBLOX Tablet", 98253502},
+  {"Triple Plungers", 161211085},
+  {"BuildColorTest", 35200756},
+  {"2018 Fireworks", 1258015236},
+  {"Torso Cannon", 85879465},
+  {"Chopper Broom", 1132884456},
+  {"1337 R0B07", 78026639},
+  {"Regular Carpet", 236443047},
+  {"Wild Bunny Horde Attack", 153939226},
+  {"Apple Pie", 18426536},
+  {"Frosted Santa, Harbinger of Christmas Creep", 40811356},
+  {"Knights of RedCliff: Battle Horn", 114020505},
+  {"Ultimate Summer Soaker", 1903663829},
+  {"RDC First Runner Up 2018 - Silver", 2008153855},
+  {"Magic Snowman", 99174250},
+  {"Frozen Blue Ice Crossbow", 365642085},
+  {"'Merica Airwalker", 52625733},
+  {"Retro Super Villain Laser Gun", 268533563},
+  {"BFG Dream Horn", 434289516},
+  {"Super Speedy Pink Potion", 929145471},
+  {"Haunted Pumpkin Staff", 36913598},
+  {"Anti-Vampire Stake", 1117743696},
+  {"Poisonous Butterfly", 117498793},
+  {"Ferdinand", 1230839551},
+  {"Deluxe Blue Roped", 112593687},
+  {"Egg Basket", 117544573},
+  {"Water Balloon", 29100543},
+  {"Rubyhorde the Rapacious' Treasure", 117544573},
+  {"Jumpin' Jack's Trick And Treat Bag", 37347141},
+  {"Delete Tool", 16201828},
+  {"Yeti Hunter Spear", 2646379006},
+  {"Rainbow Omega Katana", 341110180},
+  {"Dragonheart Sword & Shield", 172200750},
+  {"Wolfgang's club", 1865177377},
+  {"Boomerang", 18479357},
+  {"Snow Wolf Companion", 2620420865},
+  {"Red Sparkle Time Claymore", 221101437},
+  {"REKTangle Board", 202083069},
+  {"RDC 2016 Game Jam Trophy", 473287763},
+  {"Spikey Stick of Civilized Negotiation", 18409191},
+  {"Rare Egg Compass - Egg Hunt 2013", 110335886},
+  {"Redcliff Wings", 223786473},
+  {"Black Panther - Claws", 1363020083},
+  {"Dragon's Breath Potion", 70476435},
+  {"Super Freeze Cannon", 102765402},
+  {"Neon Bloxster", 257811449},
+  {"Leprechaun's Gold Rainbow Laser Gun", 149612200},
+  {"Dark Pegasus", 191261808},
+  {"Neon Rainbow Phoenix", 261827192},
+  {"Portable Justice", 82357101},
+  {"Merely's Green Sparkle Time Hoverboard", 215392741},
+  {"Blobby Companion", 198109272},
+  {"DarkAge Naginata", 244081145},
+  {"Whoopee Cushion", 31532496},
+  {"Bloxster PRL", 820013867},
+  {"Shrunken Head", 44561466},
+  {"Flaming Hedgehog Cannon", 60357972},
+  {"Birthday Dance Party Potion", 34247637},
+  {"Orinthian Bow", 111518091},
+  {"Ernesto De La Cruz's Guitar", 1119904760},
+  {"Sword of Swords", 139578136},
+  {"Bunch of Balloons", 430066424},
+  {"Redrune Raider", 103234206},
+  {"Staff of the Winds", 18462637},
+  {"Cinco de Mayo Pinata", 114687223},
+  {"Valkyrie Sword", 2845994810},
+  {"Sledge Hammer", 45177979},
+  {"Noobcaik", 107458461},
+  {"Mythic Sword of the West Wind", 241017426},
+  {"Land Shark Shooter", 118281463},
+  {"Hula Dog", 57903479},
+  {"A Very Special Monster", 21439991},
+  {"Hot Chocolate", 42321801},
+  {"Tundra Explorer Dual Hooks", 1245307956},
+  {"Duck", 164642550},
+  {"Steampunk Bow and Arrow", 356213494},
+  {"Captain America's Civil War Shield", 308122625},
+  {"Spam Cannon", 65554735},
+  {"Newt's Magical Case", 2436000243},
+  {"Crossbow", 16216702},
+  {"Double Cheeseburger", 24086500},
+  {"ROBLOX Portable Game System (RPGS)", 58574445},
+  {"Old Timey Hot Air Balloon", 537374622},
+  {"Crystal Sphere Drop", 125850450},
+  {"Anubis Staff", 1076467071},
+  {"Cornucopia Blaster", 1145358579},
+  {"Spy Eye", 79736563},
+  {"Scrooge McDuck's Giant Ruby", 999864256},
+  {"Wand of Flurry", 2226815033},
+  {"Roman Candle", 43245530},
+  {"Monster Friend", 75941738},
+  {"Dracovin Spell Book", 49491736},
+  {"Roblox Snowglobe 2011", 66896638},
+  {"Super Rocket Launcher", 190094159},
+  {"Dog Man 6 Virtual Book", 264906809},
+  {"From the Vault: Alligator Plushie", 292969458},
+  {"ROBLOX Winter Games 2014 Silver Trophy", 146026044},
+  {"Beast Claws", 105289761},
+  {"Pool Noodle", 164287842},
+  {"Ham Fists", 168142114},
+  {"Chestnut Champion Flail", 3798368538},
+  {"Judge Underwood's Gavel", 44115185},
+  {"Noir Periastron Psi", 120307951},
+  {"Reig Snowman Claws", 188854357},
+  {"Bubblegum Bomber", 939132399},
+  {"Rainbow Disco Hyperbike", 215355157},
+  {"Flaming Orb of Divine Pain", 461488745},
+  {"Protest Sign: Egg Hunt Nao", 24419822},
+  {"Spook Launcher", 183704866},
+  {"Camping Machete", 123234673},
+  {"Chicago News Man Cane", 122330194},
+  {"Bad Bad Bunny", 24039406},
+  {"Ice Cream Skateboard", 602145262},
+  {"Theodore", 329021959},
+  {"Ceramic Potion", 22152171},
+  {"Pilgrim Bear", 18446266},
+  {"Dastardly Skate", 23153742},
+  {"Emerald Knights of the Seventh Sanctum Lance", 945527020},
+  {"Halloween Roped", 180313580},
+  {"Magical Rainbow Pony", 26417031},
+  {"Eggmin Launcher 2018", 1532311127},
+  {"Sun Slayer Sword", 1820078563},
+  {"Staff of Healing", 231670298},
+  {"ROBLOX Blimp", 160199141},
+  {"Cake", 16214845},
+  {"Plunger Launcher", 295460073},
+  {"Wooden Dreidel", 19111883},
+  {"Loyal Pizza Warrior Circular Sword", 156039824},
+  {"Spec Chi Biograft Energy Sword", 139578571},
+  {"Robot Dance Gun", 467138029},
+  {"Egg Compass", 24903474},
+  {"Blunderbuss", 30847685},
+  {"Red Fidget Spinner", 928806880},
+  {"Dual Dueling Pistols", 70446454},
+  {"Flamethrower", 33879504},
+  {"Zeus's Lightning Bolt Staff", 66416616},
+  {"Spring Flowers Crossbow", 226206426},
+  {"Furno's Sword and Shield", 105189286},
+  {"The Iron Trial", 186521342},
+  {"Winters Greatsword", 261439002},
+  {"Gold Plated Selfie Stick", 968188707},
+  {"Rainbow Magic Carpet", 225921888},
+  {"Robo Blaster", 2045764727},
+  {"Frost Blade", 99199463},
+  {"Zombie Penguin Attack Horde", 304720206},
+  {"Hedgehog Friend", 76170471},
+  {"Exploding Heart", 178076989},
+  {"Presidential Salute", 29959911},
+  {"Dory Hieroglyph", 419240423},
+  {"Dog Man 4 Virtual Book", 1227732454},
+  {"ROBLOXworld Contest Trophy", 261447208},
+  {"Coffee Cruiser", 1016184203},
+  {"Horde of Attack Chirps", 738925737},
+  {"Merely's ROBLOX Tablet", 97756645},
+  {"Red Stratobloxxer", 11419882},
+  {"Burger Launcher", 236440696},
+  {"Hawkeye's Bow and Arrow", 398122724},
+  {"Bongos", 57902997},
+  {"DIY Flying Contraption", 2222648398},
+  {"Ultimate Drive Speedster", 253519495},
+  {"Guitarmy", 47871615},
+  {"BFG Butterfly Net", 433923430},
+  {"Cloud 9 Snowball Launcher", 140821168},
+  {"Firstblade of the Federation", 2845941219},
+  {"Virtual Book - Harry Potter", 2002056831},
+  {"Poseidon's Quake Trident", 54138559},
+  {"Santa", 19396450},
+  {"Artemis Bow", 92142841},
+  {"Double Sword Punch", 243791329},
+  {"Ninja Guitar", 13841367},
+  {"Tix Sword", 200960719},
+  {"Darksteel Katana of Ancient Illuminators", 86494893},
+  {"Death Run 2 Shoes", 108142069},
+  {"Spartan Sword and Shield", 96669943},
+  {"BuildGroupDragger", 36334760},
+  {"2013 Firework", 101854660},
+  {"Laserface", 159199204},
+  {"Fruity Pebbles Spoon", 454733534},
+  {"Spring Saber", 728205177},
+  {"Pretty Pretty Princess Sceptor", 114020480},
+  {"Heart Balloon", 146071355},
+  {"Katana of Destiny", 46846024},
+  {"Gold Eagle Sword", 264990158},
+  {"Wooden Club", 13206984},
+  {"Halloween Fireworks", 183347165},
+  {"Ghostfire Dagger", 62358856},
+  {"Red Rebels Paintball Gun", 26014530},
+  {"Face Melting Guitar", 90119198},
+  {"Mind Controlled Lasers", 277955084},
+  {"Experimental Jetpack", 674103772},
+  {"Leprechaun's Lucky Blade", 108148449},
+  {"Saw Sword", 54694324},
+  {"Magical Reindeer Throwing Wreath", 121338992},
+  {"PartSelection", 73889166},
+  {"Knights of the Splintered Skies: Ballista", 55917432},
+  {"26th Century Weapon", 2136411578},
+  {"Robotic Horse Mount", 2045767145},
+  {"Tambourine", 21392417},
+  {"Skull Cutlass", 144510568},
+  {"Memorial Day Fireworks", 116693715},
+  {"Heartbreak", 22152195},
+  {"Bloxiade", 17237662},
+  {"8-Bit Throwing Barrel", 31839260},
+  {"NobleDragon's Noble Dragon", 163995460},
+  {"Dart Trap", 90220371},
+  {"OBC Skateboard", 27902400},
+  {"Latke", 41457484},
+  {"USA Fireworks", 85145730},
+  {"Swordfish Sword", 124115608},
+  {"Jack Frost", 43245104},
+  {"BuildMaterialTest", 35223828},
+  {"Crimson Periastron Mu", 99119246},
+  {"Professor Poopypants' Ray Gun", 815545468},
+  {"Simon", 329021694},
+  {"Staff of Shifting Polarity", 61459706},
+  {"Personal Plane", 1241507075},
+  {"Orbital Violin Strike", 183665608},
+  {"Korblox Hunter's Bow", 193772697},
+  {"Blinged Gold Motorcycle", 2568114215},
+  {"Shuri's Gauntlets", 1363010936},
+  {"Throwing Knife Pen", 277955695},
+  {"RAIG Table", 110789105},
+  {"Water Dragon Claws", 2548916756},
+  {"Spec Epsilon Biograft Energy Sword", 23727705},
+  {"Yamernade", 40892405},
+  {"Deluxe Vine Staff", 183355732},
+  {"HotThoth's Voodoo Doll", 53130896},
+  {"Rock Thunder", 283754518},
+  {"Scrooge McDuck", 999866081},
+  {"Spartan Sword", 28721024},
+  {"Cursed Mummy Friend", 16987194},
+  {"Typhinius the Gatekeeper - Sword", 2261881814},
+  {"Luckymaxer's ROBLOX Tablet", 98219158},
+  {"Ruyi Jingu Bang - A Walmart Exclusive", 79736586},
+  {"Skater's Skateboard", 39782579},
+  {"Attack Honey Badger", 122278316},
+  {"Taxi", 125013840},
+  {"Magical Umbrella", 44115926},
+  {"??", 66416590},
+  {"Patriotic Sparkler", 120749408},
+  {"A More Elegant Blade", 81155000},
+  {"Silver Snowflake", 19643249},
+  {"Overseer Mage Staff", 2261167878},
+  {"Ronin Katana", 12187348},
+  {"Troll Pet", 88143000},
+  {"Holiday Ham", 101078350},
+  {"Plunger Bow and Arrow", 639343572},
+  {"Presidential Vampire Slaying Ax", 146047188},
+  {"RDC 2019 Participation Trophy", 3600620380},
+  {"Sword of Heartsongs", 1402322831},
+  {"Star Butterflys Magic Wand", 250407647},
+  {"Razor Sharp Looks", 549566589},
+  {"DarkAge Ninjas: Dual Kamas", 60888284},
+  {"Orb Crystal Launcher", 61916108},
+  {"Knights of Redcliff: Bow and Arrow", 49929776},
+  {"Ninja Blink Potion", 47597835},
+  {"Pirate Lieutenant's Cutlass", 48159648},
+  {"Korblox Flying Oblivion Horn", 101734094},
+  {"Pua", 537435062},
+  {"BLOXikin Horde", 250534394},
+  {"Donut Delivery Moped", 211944997},
+  {"Nightmare Guitar", 2620524562},
+  {"Barrel O' Monkeys", 31314849},
+  {"Moneybag", 16722267},
+  {"Rickshaw", 334620605},
+  {"The Arabian Nights", 21439893},
+  {"Kernel Panic Katana (1x1x1x1's)", 501941714},
+  {"Max Crumbly Book", 420178043},
+  {"Mega Mallet", 746687364},
+  {"Sten Gun", 95354304},
+  {"Eggstermination Slingshot", 228588651},
+  {"The Kingdom of Wrenly: The Lost Stone", 150927708},
+  {"Wizard Orb", 38327125},
+  {"Makeshift Bow", 2136389582},
+  {"Green Hyperlaser Gun", 1427401206},
+  {"Picnic Basket", 52625744},
+  {"Dragon Slayer Knight's Sword", 675323785},
+  {"Turkey Cannon", 48504724},
+  {"Zephanon Phaser and Shield", 69567827},
+  {"Developer Pizza Launcher", 2906730676},
+  {"Interplanetary Light Sword", 1033136271},
+  {"Bluesteel Alterer of Destiny", 97161222},
+  {"Ghost Minion", 89488524},
+  {"Sabacc Playing Cards", 1748603889},
+  {"Beach Ball", 25974222},
+  {"Eggphone", 4771618549},
+  {"Autumn's Blade - Sword and Shield - A Target Exclu", 64870021},
+  {"Santa's Big Bag O' Toys", 41856126},
+  {"Leprechaun Harp", 109583822},
+  {"Deadly Thorn Potion", 59175777},
+  {"Blue Speedster", 346687565},
+  {"Magic Dragon", 24659699},
+  {"American Archer", 85145757},
+  {"Dreamwalker's Dagger", 65079090},
+  {"Baby Nessie Mount", 2463674178},
+  {"Pepperoni Pizza", 22596452},
+  {"Motherboard Sword", 1046323916},
+  {"Zombie Crossbow", 304720496},
+  {"Birth of the Dragon Nunchucks", 953510020},
+  {"Earth's Might Staff", 102705300},
+  {"Linked Sword", 125813769},
+  {"Flock of Attack Seagulls", 236401511},
+  {"Protest Sign: Explode the Fireworks", 164174293},
+  {"Ice Dragon Slayer", 168141301},
+  {"4th of July 2016 Fireworks", 445151478},
+  {"Bunny Moto", 387285940},
+  {"Ice Axe", 46368870},
+  {"Green LAZER Hammer", 743687369},
+  {"Incinerator 6000", 102785430},
+  {"Gravity Gun", 34981961},
+  {"Frosty the Snowfriend", 18971349},
+  {"Taco", 15177716},
+  {"Eveningstar: Bringer of Dusk", 608818868},
+  {"Bigfoot Feet Slippers", 2463675080},
+  {"Ship in a Bottle", 700067234},
+  {"Drum Kit", 33066728},
+  {"Flaming Staff of the Nefarious Red Wizard", 243777016},
+  {"Deluxe Slime Ray", 503957703},
+  {"Snow Shredder's Board", 193706415},
+  {"ROBLOX Birthday Cake 2010", 34223662},
+  {"2018 Noisemaker", 1258015043},
+  {"Galactic Green Blaster", 639345143},
+  {"Riot Shield and Billy Club Set", 82357079},
+  {"Shadow Archer's Bow", 467859890},
+  {"Smore", 22788972},
+  {"ROBLOX Rally Award 2011", 58364871},
+  {"2015 Fireworks", 190880295},
+  {"Skeleton Grappling Hook", 2478077704},
+  {"Otterhead Longsword", 183797762},
+  {"Lucky Clover Hammer", 108153884},
+  {"Autumn Shuriken - A Target Exclusive", 96493608},
+  {"Transmorph Ray Gun", 29099749},
+  {"Hades Staff of Darkness - A Gamestop Exclusive", 69210321},
+  {"Adventurous Assassin Crossbow", 209980247},
+  {"Skelefriend", 63253701},
+  {"Gingerbread Companion", 1224414225},
+  {"Clawknife", 22152234},
+  {"Virtual BLOXcon Power Sword", 130167063},
+  {"Captain Underpants Book", 129457095},
+  {"Captain Party Pirate's Attack Parrot", 431045523},
+  {"Halloween Bow and Arrow", 315573506},
+  {"RDC 2nd Runner Up 2018 - Bronze", 2008164280},
+  {"Deluxe Dance Ray", 430065768},
+  {"2013 Sparkler", 101854599},
+  {"Holiday Ornament Staff", 99797357},
+  {"Positronic Platform Producer", 34898883},
+  {"Blobby", 334177905},
+  {"Minion", 11934168},
+  {"BuildConfiguration", 36270159},
+  {"Redsteel Ranger Ray Gun- A Gamestop Exclusive", 65954788},
+  {"The Drop", 152233094},
+  {"Accursed Vampire Bat Hand", 63721711},
+  {"NoobTube", 27474371},
+  {"Ultraviolet Laser Oculus", 113299556},
+  {"Haunted Cheezburger", 17237692},
+  {"Rainbow Hot Air Balloon", 410001793},
+  {"Sword Fish", 54130543},
+  {"United States of Rock Guitar", 52625728},
+  {"Orinthian Falcon", 92627975},
+  {"Hallo-Cycle", 132789698},
+  {"DarkAge Shuriken", 341189697},
+  {"Knights of the Splintered Skies: Lightning Staff", 395205750},
+  {"Digital Green Skateboard", 23156134},
+  {"Valentine's Throwing Stars", 114919397},
+  {"Bruin Mount", 159199229},
+  {"Overseer Crossbow", 287424705},
+  {"Exploding Lab Table", 154727201},
+  {"01010010 Enforcer Sword", 275829999},
+  {"Festive Laser Blaster", 330295984},
+  {"Protest Sign: Noobs", 22960435},
+  {"Trick or Treat Bag 2011", 62803165},
+  {"Mimic Cooler", 892803497},
+  {"Bamboo Dart Blowgun", 51346271},
+  {"4th of July 2017 Fireworks", 892081727},
+  {"Earth Day 2010 Seeds", 25923196},
+  {"TBC Skateboard", 27902398},
+  {"Captain Underpants Book 6", 2239348478},
+  {"Beast Scythe", 888448457},
+  {"ROBLOX GameStop Card", 37821473},
+  {"Korblox Skeleton Wraith", 96092647},
+  {"Dual Gravity Coil", 150366274},
+  {"Lucky Laser Gun", 149612167},
+  {"Staff of the Raging Storm", 49491808},
+  {"Festive Artemis Bow", 332755212},
+  {"Classic Bucket", 25162389},
+  {"Sword of the Epicblueness", 365674685},
+  {"Hanukkah", 19111869},
+  {"Mr. Wing", 1074742819},
+  {"The Merry Avenger", 67319425},
+  {"Crystal Blade: Amethyst Attack", 1678314358},
+  {"Phoenix Feather Burning Sword", 2560028700},
+  {"Dog Man 3 Virtual Book", 1001541309},
+  {"Dual Darkhearts", 108149175},
+  {"Boombox Gear 3.0", 193769889},
+  {"Disguise-to-Go Watch", 549915884},
+  {"Toxic Goo Trap", 79446395},
+  {"Skateboard", 63253876},
+  {"Lex, the Elf Warrior's Sword", 1466353882},
+  {"Cupid's Beloved Blade", 106064277},
+  {"Cliche Staff of Zombie Infection", 64647666},
+  {"Wizards of the Astral Isles: Limb Stretching Spell", 106781782},
+  {"Lava XD", 23532796},
+  {"Hot Wheels Twinduction Car", 223132403},
+  {"Rapid Fire Snowflakes Shuriken", 188644205},
+  {"Grand Samurai Katana", 891924036},
+  {"RoboDog", 1363023036},
+  {"Coco - Dante Companion", 1119986898},
+  {"Shadow Dancer", 48159815},
+  {"Coco - Family Portrait", 1119995177},
+  {"Ice Staff", 19704864},
+  {"Tom's Beans", 103358098},
+  {"Rockin' Red Walking Stick", 1094661592},
+  {"Zombie Attack Bunny", 522586178},
+  {"Steampunk Jetpack", 157205831},
+  {"Snoopy Companion", 313536525},
+  {"Golden Soccer Trophy", 512451831},
+  {"Crazy Chicken Bow", 153938986},
+  {"Paint Grenade", 172246820},
+  {"Aqua Roped", 928796097},
+  {"Bombo's Bow and Arrow", 121925844},
+  {"Fruitcake", 19395497},
+  {"Snowbot's Cane", 2530752067},
+  {"Voyagers", 334523653},
+  {"Captain McGee's Throwin' Axe: A CVS Exclusive Item", 64869906},
+  {"Sword of the Raven's Feather", 2535102249},
+  {"Opened Faces of Awesome Basket", 382837631},
+  {"Potion of the Fiery Fists", 56561593},
+  {"Crossbow of the Sea", 236438668},
+  {"Hot Dog", 29939494},
+  {"Blue Laser Scythe", 846792499},
+  {"Korblox Deathspeaker's Spell Book", 59848474},
+  {"Magic Bunny", 24841528},
+  {"RDC 2017 Builder's Trophy", 1047877698},
+  {"Dr. Gutpunch's Glove", 181355844},
+  {"Neon Octopus Cannon", 257343597},
+  {"Walrus", 53917288},
+  {"Attack Koala", 1241156565},
+  {"Year of the Boar Lantern", 2884667002},
+  {"The Gigantic Tome of Eggs", 217981450},
+  {"Compass", 14864611},
+  {"Tornade", 47871646},
+  {"Rayvenge Sword", 92142829},
+  {"Wyldfang the Brave Companion", 1990272438},
+  {"Misfortune Cookie", 95484354},
+  {"Sonic Boom Tuba", 47871635},
+  {"Elegant Blade", 15470359},
+  {"Neon Motorbike Superstar Motorbike", 2528738178},
+  {"Divine Guardian's Sword", 184757813},
+  {"MetalGuitarOfAwesomeness", 834681446},
+  {"Sapphire Rapid Fire Shocker", 108875237},
+  {"BC Skateboard", 27902388},
+  {"Kami Potion", 66426498},
+  {"BuildMaterial", 58901485},
+  {"Skeleton Foam Finger", 2506347092},
+  {"Powerful Paintbrush", 2261478942},
+  {"Box Of Chocolates", 72318993},
+  {"The Wasp", 1915020448},
+  {"Flaming Mace", 147143848},
+  {"Make It Rain", 99797403},
+  {"Frost Potion", 42845896},
+  {"Korblox: Tripmine", 51757158},
+  {"Mythic Sword of the Earth", 241512134},
+  {"The 6th Annual Bloxy Award", 2758794374},
+  {"Holidaysplosion", 67319385},
+  {"Harbinger of Fimbulwinter", 15970544},
+  {"Poisoned Skeleton Scythe", 158069110},
+  {"Pot O' Gold Sword", 151320464},
+  {"Korblox Sword and Shield", 68539623},
+  {"BLOXY 2015", 342869414},
+  {"Super Stomp Boots", 97161241},
+  {"Deputy Robby's Cowboy Boots", 49052638},
+  {"Rainbow Basket of Solitary Omega", 230516405},
+  {"Misfortune's Guardian Blade", 184757948},
+  {"Microphone", 45754061},
+  {"Kittypult", 105351748},
+  {"Brain Trap", 64647631},
+  {"Tone's Water Polo Ball", 323102649},
+  {"Mr. Bones- Skeleton Dog", 306971449},
+  {"Adurite Guitar of Rock Excellence", 928913996},
+  {"Andromeda Explorer Power Punch", 323477973},
+  {"Turbo's Speed Shell", 163323379},
+  {"BuildSurface", 58901575},
+  {"Walking with Dinosaurs Speed Egg", 135949859},
+  {"Turkey Friend", 1145358304},
+  {"Snowball Cannon", 19704172},
+  {"Danger Dagger", 96669682},
+  {"Dragon Tooth Power Up", 467109039},
+  {"Spec Alpha Biograft Energy Sword", 11999235},
+  {"Eggdar - Egg Hunt 2013", 110337910},
+  {"Flaming Dragon Slayer Bo Staff", 73232786},
+  {"Red Hover Roped", 1360078533},
+  {"Classic Plane", 163348575},
+  {"Nunchucks", 334620353},
+  {"The Axe of Undoing: A Walmart Exclusive", 73799348},
+  {"Wizards of the Astral Isles: Rat Plague Summoner", 106701564},
+  {"Native Bear", 18446258},
+  {"Sparkle Time Lump of Coal", 138761013},
+  {"Lucys Psychiatry Booth", 314534854},
+  {"8-Bit Sword and Shield", 2103274863},
+  {"Anger Management Phone Book", 39258389},
+  {"Nerf Zombie Strike Dreadbolt", 98700522},
+  {"Violin Crossbow", 201756020},
+  {"Dagger of Shattered Dimensions", 71037101},
+  {"Sea Dragon", 2548992615},
+  {"Bat Scythe", 306971294},
+  {"Bluesteel Claw", 10758456},
+  {"Rapid Launch Blaster", 98411436},
+  {"Ivory Periastron", 108158379},
+  {"Scroll of Sevenless", 125013839},
+  {"Golden Magic Carpet", 1016183073},
+  {"Haunted Pizza", 179625551},
+  {"Magic Carrot", 50454041},
+  {"DarkAge Nunchuks", 160189476},
+  {"Furno's Aquajet Pack and Plasma Gun", 89390459},
+  {"Super Spy Laser Blaster", 208659734},
+  {"Giant Kaiju Arms", 1117745433},
+  {"Penguin Potion", 46360821},
+  {"Bombastic Sword", 629893424},
+  {"Zombie Friend Fred", 36784258},
+  {"Aquaman's Trident", 2548993638},
+  {"Speedy Shoes", 183355817},
+  {"Bag O Christmas Tree Seeds", 19703034},
+  {"Eggdentifier 2010", 24903431},
+  {"Time Watch", 81330766},
+  {"Crowbar", 21445765},
+  {"Mystical Staff of Cyan Lightning Magic", 280661926},
+  {"BB Gun", 42845609},
+  {"Scythe", 28275809},
+  {"Monster Radar", 181245172},
+  {"Victrola", 163348758},
+  {"Annoying Elf: ReeseMcBlox", 67494312},
+  {"Dog Man Book 5", 2230347432},
+  {"The Merry Avenger Bow", 99206970},
+  {"Incendiary Expert Goblin - Bomb", 2907613658},
+  {"Merely's Bluesteel Hoverboard", 286527185},
+  {"Dual Plungers", 114690870},
+  {"Stop Hitting Yourself", 91360104},
+  {"Bluesteel Crossbow", 2163551009},
+  {"Grey Bunny Accoutrement", 233528157},
+  {"MissileToe", 66896565},
+  {"Spec Omega Biograft Energy Sword", 98411325},
+  {"Polar Warrior's Spear", 583026228},
+  {"Ace Ranger Axe", 128218518},
+  {"Homemade Wings", 161216321},
+  {"Donut Danger", 160189720},
+  {"Aztec Warrior Macuahuitl", 2803762878},
+  {"Nerf Zombie Potion", 515688182},
+  {"Beef Wellington Launcher", 170896461},
+  {"Scrooge's #1 Dime", 999861927},
+  {"All-Seeing Sentry", 68603151},
+  {"Nightmare Dragon Slayer", 1103011681},
+  {"DarkAge Ninjas: Ninja Kitteh", 60888225},
+  {"Ghost Blaster", 94233367},
+  {"Wildlife View-Master", 313532084},
+  {"Orinthian Axe", 147143821},
+  {"Pirate Throwing Axes", 317592936},
+  {"2013 Trick or Treat Bag", 133315268},
+  {"brayden99's ROBLOX Tablet", 99033290},
+  {"Orbital Violin: Deep Freeze", 583159170},
+  {"Spooky Guitar", 13206887},
+  {"Rainbow Laser Blaster", 343586214},
+  {"Opened Astral Basket from the Lofty Isles", 230185510},
+  {"Super Spy Drone", 987032734},
+  {"Tiger Strike Shuriken", 2535464538},
+  {"RecentParts", 73089229},
+  {"Personal Rocketship", 298085284},
+  {"Wakandan Shield", 1602563043},
+  {"Destinations View-Master", 313532207},
+  {"Pirate Hook", 14131602},
+  {"hicup789's ROBLOX Tablet", 97712201},
+  {"Sword of Darkness", 77443491},
+  {"Pilgrim's Blunderbuss", 40892781},
+  {"Lightning Bolt Sword- A Gamestop Exclusive", 96501454},
+  {"Flashlight", 116040770},
+  {"Snake Sniper", 113299620},
+  {"Green Laser Scythe", 218631128},
+  {"Protest Sign: Save the Fireworks", 164174394},
+  {"Victorious Viking's Greatsword", 2538729378},
+  {"Laser Lava Launcher", 206798485},
+  {"Sapphire Blaster", 57983650},
+  {"Monster Compass", 181245141},
+  {"Crimson Katana of the Unsetting Sun", 18017365},
+  {"Dual Monster Axes", 315617826},
+  {"2012 Night Rocket", 67747860},
+  {"Galaxy Zack: Hello, Nebulon!", 110204666},
+  {"TheAnazenan's ROBLOX Tablet", 99138630},
+  {"Big Apple Launcher", 125859385},
+  {"iLift", 122278276},
+  {"Military Axe", 81847570},
+  {"Marshmallow Chirp", 24785057},
+  {"Giant Magnet", 1001649855},
+  {"Halloween Monster Potion", 180518956},
+  {"Red Panda", 221173959},
+  {"Taco Launcher", 178003868},
+  {"Five Kingdoms: Sky Raiders", 149222558},
+  {"Annoying Elf: Ostrichsized", 66896542},
+  {"D-O", 4146860828},
+  {"Adventurous Hiker Compass", 201618435},
+  {"Mr. Whiskers", 517827962},
+  {"Remote Control Plane", 69210487},
+  {"Leprechaun Potion", 380210977},
+  {"Mother's Day Card", 26777502},
+  {"Breakfast Gun", 163353363},
+  {"BuildDelete", 36738185},
+  {"Pumpkin Trick or Treat Pail", 247098483},
+  {"Halloween Tank", 179369914},
+  {"Magic Ninja", 30847779},
+  {"Police Baton", 11956382},
+  {"Year of the Snake Lantern", 106064469},
+  {"Bloxcon Hall of Fame 2014", 162979250},
+  {"Statue Staff of Stony Justice", 5919534},
+  {"The Dinoboard", 319106687},
+  {"Heather's Axe", 257829534},
+  {"Acursed Mummy Hand of Head Shot", 37347081},
+  {"Navy Convertible", 335132038},
+  {"The Federal Reserve", 81847637},
+  {"Instamatic Tent", 57229337},
+  {"Mardi Gras Necklace Shooter", 147937415},
+  {"JediTkacheff's DeathStar", 53130867},
+  {"Green Gremlins Paintball Gun", 27245855},
+  {"Gear Recycler", 236442388},
+  {"Fluffy Unicorn", 84012460},
+  {"Jack Sparrows Compass", 790968791},
+  {"Forest Bow and Arrow", 1060282245},
+  {"Epic Golden Sword and Shield", 416846718},
+  {"Pararocket", 85145680},
+  {"Sword of Starlight", 1981813154},
+  {"Common Egg Compass 2014", 152823669},
+  {"Sharp Shark Sword", 212500257},
+  {"Hot Wheels Spin Shotz Disc", 108155584},
+  {"Flying Dragon", 610133821},
+  {"Golden Sword of Spring Growth", 226285948},
+  {"Slime Potion", 492854717},
+  {"Hypnocannon", 35366155},
+  {"Virtual Book Harry Potter", 531702150},
+  {"Trollamom", 95354260},
+  {"DarkAge Bo Staff", 160189629},
+  {"Rubber Chicken Launcher", 121385193},
+  {"Telamonster: the Chaos Edge", 93136746},
+  {"Pirate Mop", 2845988123},
+  {"Pi Transmorpher", 148791460},
+  {"Confusoray 672", 48596305},
+  {"Sheriff Finnster's Seven-Shooter", 49052686},
+  {"Haunted Armor Sword", 2470915740},
+  {"Laser Throwing Stars", 218631022},
+  {"Overseer Short Sword", 156467990},
+  {"Dog Man Unleashed Virtual Book", 579868200},
+  {"ROBLOX Frisbee", 25158998},
+  {"Ghost Hoverboard", 64160547},
+  {"Roman Catapult", 174752400},
+  {"Ninja Claws", 160189871},
+  {"Icy Arctic Fowl", 101078559},
+  {"Laser Electrocutor", 82357123},
+  {"Quill of the President", 146047220},
+  {"Chocolate Milk", 21392199},
+  {"Cocoa Guitar", 406101128},
+  {"Golden Nunchucks", 435116454},
+  {"Flower Feet", 226286253},
+  {"Volleyball", 57983532},
+  {"Kwanzaa Kinara", 19399456},
+  {"Bejeweled Sword of Great Fury", 204095612},
+  {"RoMaze", 73829202},
+  {"Beehive", 117498775},
+  {"Marching Drum", 1149573271},
+  {"Homemade Sword and Shield", 244082303},
+  {"Momo Companion", 2221466451},
+  {"Dragon Hunter Spear", 134111541},
+  {"Nickelodeon Slime Blaster", 365631067},
+  {"Overseer Sword & Shield", 223439643},
+  {"RGC Award 2012", 86903805},
+  {"Laser-saw", 159199218},
+  {"Star-Lord's Blaster", 725802037},
+  {"Festive Tree Present", 136172718},
+  {"BuildCloneTest", 36017373},
+  {"Headless Horseman's New Head", 131592085},
+  {"Famous Bloxstar Guitar", 253518869},
+  {"Claymore", 11452821},
+  {"Video Star Egg Launcher", 303937617},
+  {"Blow Dryer", 11719816},
+  {"Orange You Jealous XD", 23922939},
+  {"Double Damage Frog", 114687236},
+  {"The Break Up", 72069827},
+  {"Floating Thingamajig", 454734258},
+  {"Unfriendly Turkey Friend", 136170437},
+  {"Big Stick", 317593122},
+  {"From the Vault: Bandit Dog", 292971846},
+  {"Giant Ice Bow", 1402445648},
+  {"Merely's Hover Surfboard", 233660801},
+  {"billylones' ROBLOX Tablet", 99254164},
+  {"Ticket Launcher", 391005275},
+  {"Ghostfire Throwing Daggers", 64220952},
+  {"Breath of Ice", 2685966484},
+  {"Golden Bloxxer", 172921991},
+  {"BCX2000 Snowreaper Bazooka", 42201538},
+  {"Dragonfire Sword", 55194474},
+  {"Lightning Wand", 154727343},
+  {"Magma Dismantler", 73799243},
+  {"Crocopal", 257343434},
+  {"Velociroblox", 250533235},
+  {"TubeHeroes DanTDM", 302418416},
+  {"Sword of Unvanquished Snakes", 149612243},
+  {"Golden Shuriken", 255800783},
+  {"Knights of the Splintered Skies: Sword", 156467926},
+  {"Rotten Pumpkin Toss", 182273799},
+  {"The Londoner's Brolly", 124908832},
+  {"Colonel's Cavalry Sabre", 49052716},
+  {"Frost Guard General's Sword", 139574344},
+  {"Lightblox Jar", 113328094},
+  {"Celtic Throwing Stars", 225921724},
+  {"Flashbang", 16979083},
+  {"Trololololo Wand", 69964719},
+  {"Categgpult", 383608755},
+  {"Vuvuzela", 29345058},
+  {"Opened Hazardous Basket of Major Oversight", 152660258},
+  {"Game Dev Mug", 1856117810},
+  {"Sword of the Eternal Abyss", 532254782},
+  {"Santa's Sleigh", 67755192},
+  {"Red Foam Finger", 27312415},
+  {"Godzilla Companion", 3130875522},
+  {"Red ROBLOX Glider", 218631227},
+  {"Fairy Axe", 109583046},
+  {"Ultimate Slide Skateboard", 52180878},
+  {"Throwing Lunchbox", 2305192040},
+  {"Pirate Juice", 13477890},
+  {"Wormhole Tunneler", 34870758},
+  {"Orinthian Sword and Shield", 92528079},
+  {"Catapult", 70032387},
+  {"Fuse Bomb", 115632351},
+  {"Rare Egg Compass 2014", 152824068},
+  {"Lincoln's Golden Rail Splitter", 445150567},
+  {"Hard Times Henry Violin", 1868161479},
+  {"Pirate Cutlass", 18910681},
+  {"Black Hole Bomb", 28277486},
+  {"The Seventh Snake Spell", 2135391608},
+  {"Bouquet of Pain Throwing Stars", 728207067},
+  {"Coco - Marigold Petal", 1119005570},
+  {"Trollin' Pumpkin", 62803186},
+  {"Chameleon Potion", 61916137},
+  {"Party Executive Briefcase", 315574690},
+  {"Cobalt Multiblaster", 365642352},
+  {"Fallen Artemis Bow", 110892267},
+  {"Wasp Wings", 117408849},
+  {"Top Secret Briefcase", 987030948},
+  {"Blast-a-ton - A Level Up Contest Prize", 65868656},
+  {"Hiccup the Dragon Rider", 261762082},
+  {"American Monster Blade", 264991177},
+  {"Manus, the Battle Lion", 2560812480},
+  {"Riptide", 124472052},
+  {"Red Futurion Blaster", 91658290},
+  {"Big Bug Net", 698862470},
+  {"Korblox Lord of Death Sword", 223800426},
+  {"Punk Wrist Cuff", 122278207},
+  {"Magnificent Magenta Paintball Gun", 30649735},
+  {"Skull Gladius - a CVS exclusive item", 64372667},
+  {"Ancient Eagle Mount", 1645052196},
+  {"Azure Periastron Alpha", 69499437},
+  {"The Daring Archer's Bow & Arrow", 221266538},
+  {"Booster Gloves", 97161262},
+  {"Scribbly XD", 24294377},
+  {"Pi Launcher", 148791372},
+  {"Sir Kitty McPawnington's Sword and Shield", 232520546},
+  {"Witchs Insta-Cauldron", 36105781},
+  {"Attack Ocelot", 439988413},
+  {"Cool Punk Kid Guitar", 253518920},
+  {"Deluxe Beach Ball", 112591865},
+  {"Banana Peel", 29100449},
+  {"RDC 2017 Winner Trophy", 1047878121},
+  {"Elixir of Dreams", 65082246},
+  {"Rainbowrath: The Avenger", 346686597},
+  {"Sushi Scooter", 271017031},
+  {"Decoy Deploy", 30392263},
+  {"Orbital Strike Piano", 236402747},
+  {"Blue Fidget Spinner", 928807478},
+  {"Spray Paint", 80576967},
+  {"Captain Bonegrim Sword", 1868405032},
+  {"Puss in Boots' Sword", 202039834},
+  {"Military Spy Satellite", 88885606},
+  {"Eight Bit Marvel", 28277105},
+  {"Knights of the Seventh Sanctum: Sword and Shield", 60357959},
+  {"Winged Guitar", 1149579825},
+  {"Blackhole Ray Gun", 78005009},
+  {"Paper Ninja Stars", 498752334},
+  {"Sir Lancelots Sword", 186867671},
+  {"Liberty Torch", 55302141},
+  {"Megagavel", 1046322934},
+  {"Speed Coil", 99119158},
+  {"Summer 2014 Skateboard", 161208517},
+  {"Cool Story Air Conditioner", 119101643},
+  {"Incredibles 2 Badge", 1886281601},
+  {"Redcliff Archer's Crossbow", 945542998},
+  {"Jungle Explorer Boomerang", 1016496274},
+  {"Race the Sunset", 76170545},
+  {"Outrageous Board with a Nail in It", 62809243},
+  {"Four-In-A-Row", 18210455},
+  {"ROBLOX Winter Games 2014 Gold Trophy", 146026928},
+  {"Wood Cabin Snowglobe", 19111894},
+  {"ROBLOX Summer Sparkler", 162857316},
+  {"Golden Football", 373921986},
+  {"Protest Sign: Eggs are for eating.", 24419811},
+  {"Telanax xTreme Dual Shoulder Cannons", 73265108},
+  {"Tyrannosaurus", 85754656},
+  {"Beat Up Super Jank Boombox", 319655003},
+  {"Newtrat's Tuskinator", 124126871},
+  {"Goblet", 15470183},
+  {"NY Pizza Frisbee", 125859483},
+  {"Battle Bottle", 181106464},
+  {"Adurite Alterer of Destiny", 489197999},
+  {"Conjurer's Fist", 90718686},
+  {"Bloxster STB", 553939167},
+  {"RotateTool", 58800579},
+  {"Rocket Powered Skis", 190094313},
+  {"Opened Bluesteel Basket of Spiky Pwnage", 230758639},
+  {"Scython's ROBLOX Tablet", 99254437},
+  {"Board With a Nail in It", 10510024},
+  {"Tarantula Pet", 382281291},
+  {"Swarm of Bats", 188298769},
+  {"Swordbreaker", 77443436},
+  {"Blue Katana of One Thousand Tears", 20577851},
+  {"Steampunk Hoverboard", 1380774367},
+  {"Silver Monkey", 53628166},
+  {"Pumpkin Launcher", 51568568},
+  {"Futurecycle", 1001653705},
+  {"ROBLOX U Free Stuff Launcher", 176087640},
+  {"Death's Trident: A Walmart Exclusive Item", 62027100},
+  {"Moonwalk Dance Potion", 32353654},
+  {"Captain Cyborg Flintlock", 243890860},
+  {"Roblox Pom-Poms", 1030043603},
+  {"ROBLOX U Frisbee", 176087597},
+  {"Viridian Hoverboard", 483899603},
+  {"RDC Winner 2018 - Gold", 2008153361},
+  {"Porter's Pumpkin Pitchfork", 36568603},
+  {"Guitar Sword", 60357982},
+  {"Garbage Can Shield and Wooden Sword Set", 75558920},
+  {"Beach Umbrella Sword", 1983666770},
+  {"CloneTool", 73089204},
+  {"Sword of the Seas", 155661985},
+  {"Steam Engine", 157285782},
+  {"Falcon-Pack 9000", 1191149773},
+  {"Red LAZER Sword", 834681176},
+  {"Hover Roped", 218634097},
+  {"0-Bit Crossbow", 869125445},
+  {"Rocket Boots", 563288952},
+  {"Sword of Kubo's Father", 548019247},
+  {"Springtime Cutlass Of Infinite Virtue", 24440014},
+  {"Wand of the Evil Eye: A Gamestop Exclusive", 62827121},
+  {"Tee Shirt Cannon", 80576928},
+  {"Neon Rocker Guitar", 1144705079},
+  {"Mackerel", 46360920},
+  {"Vanishing Ninja Star", 129471170},
+  {"Ghost Dragon", 94233391},
+  {"MeeBot", 1149183146},
+  {"Crystal Sword - A Walmart Exclusive", 85150070},
+  {"Dragon's Blaze Sword", 105351545},
+  {"Black Tie Affair Gun", 192456288},
+  {"Rotten Rocky's Guitar", 163355764},
+  {"Protest Sign: We Want User GUIs Now!", 15973049},
+  {"Chair", 960895000},
+  {"RobloTim's RobloHunk Potion", 53130887},
+  {"Halloween Throwing Stars", 313547345},
+  {"Sword of the Seven Winters", 93136666},
+  {"Evil Green Science Goo", 154727487},
+  {"Unlucky Launcher", 413200176},
+  {"TechnoWizard Staff", 718245473},
+  {"Iris Katana of Goldengrove Unleaving", 22787168},
+  {"Elder Wand", 2435999675},
+  {"Gravity Disruptor", 101110605},
+  {"Frozen Halberd", 1215506016},
+  {"Soccer Ball", 28664212},
+  {"Fallen Artemis Sword & Shield", 243778818},
+  {"Lillian's Moonglaive", 1665444157},
+  {"Turkey Leg", 13745494},
+  {"Shards in the Code: Season One - Episode 1", 190111117},
+  {"Serpent Staff", 82707577},
+  {"Korblox - Fallen's Spine Blade", 114020557},
+  {"Phantom Falchion: A Walmart Exclusive", 76596299},
+  {"Non-Hovering Board", 277956390},
+  {"Beast Boy", 257016600},
+  {"Dread Elder Warlock's Wand", 2413887523},
+  {"Sword of the Highlander", 12187319},
+  {"W.A.R.P.: The Reluctant Assassin", 114491718},
+  {"Footbag", 52100858},
+  {"Dual Illumina", 101191308},
+  {"Otterhead Shortsword", 21439778},
+  {"Stravant's Lightning", 169669071},
+  {"Summer Camp Arm Floaties", 433922317},
+  {"Crossbow of the Blades", 78665215},
+  {"Chimera", 87361508},
+  {"Hungry Lion Friend", 91294485}
+}
+
+-- Remove old GUI if exists
+local old = playerGui:FindFirstChild("GearListGUI")
+if old then old:Destroy() end
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "GearListGUI"
+ScreenGui.ResetOnSpawn = false
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.Parent = playerGui
+
+-- Mobile-friendly default panel size (fits inside the screen instead of covering it)
+local cam = workspace.CurrentCamera
+local vp = (cam and cam.ViewportSize) or Vector2.new(390, 700)
+local DEFAULT_W = math.clamp(vp.X - 60, 260, 360)
+local DEFAULT_H = math.clamp(vp.Y * 0.6, 320, 460)
+
+-- Toggle Button (pill-shaped, icon + label, drop shadow, press feedback)
+local ToggleBtn = Instance.new("TextButton")
+ToggleBtn.Name = "ToggleBtn"
+ToggleBtn.Size = UDim2.new(0, 118, 0, 48)
+ToggleBtn.Position = UDim2.new(0, 14, 0.5, -24)
+ToggleBtn.BackgroundColor3 = Color3.fromRGB(40, 130, 210)
+ToggleBtn.BorderSizePixel = 0
+ToggleBtn.AutoButtonColor = false
+ToggleBtn.Text = ""
+ToggleBtn.ZIndex = 5
+ToggleBtn.Parent = ScreenGui
+Instance.new("UICorner", ToggleBtn).CornerRadius = UDim.new(1, 0)
+
+-- Neutral glossy highlight (works over either the blue or red state color)
+local ToggleGradient = Instance.new("UIGradient", ToggleBtn)
+ToggleGradient.Color = ColorSequence.new(Color3.new(1, 1, 1))
+ToggleGradient.Transparency = NumberSequence.new({
+    NumberSequenceKeypoint.new(0, 0.65),
+    NumberSequenceKeypoint.new(0.5, 0.9),
+    NumberSequenceKeypoint.new(1, 0.72),
+})
+ToggleGradient.Rotation = 90
+
+local ToggleStroke = Instance.new("UIStroke", ToggleBtn)
+ToggleStroke.Color = Color3.fromRGB(255, 255, 255)
+ToggleStroke.Transparency = 0.75
+ToggleStroke.Thickness = 1
+
+-- Soft shadow sitting just behind the button
+local ToggleShadow = Instance.new("Frame")
+ToggleShadow.Name = "Shadow"
+ToggleShadow.Size = UDim2.new(1, 6, 1, 6)
+ToggleShadow.Position = UDim2.new(0, -3, 0, 1)
+ToggleShadow.AnchorPoint = Vector2.new(0, 0)
+ToggleShadow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ToggleShadow.BackgroundTransparency = 0.7
+ToggleShadow.BorderSizePixel = 0
+ToggleShadow.ZIndex = 4
+ToggleShadow.Parent = ScreenGui
+Instance.new("UICorner", ToggleShadow).CornerRadius = UDim.new(1, 0)
+ToggleShadow.Position = ToggleBtn.Position - UDim2.new(0, 3, 0, -1)
+ToggleShadow.Size = UDim2.new(0, ToggleBtn.Size.X.Offset + 6, 0, ToggleBtn.Size.Y.Offset + 6)
+
+local ToggleIconBadge = Instance.new("Frame", ToggleBtn)
+ToggleIconBadge.Size = UDim2.new(0, 32, 0, 32)
+ToggleIconBadge.Position = UDim2.new(0, 8, 0.5, -16)
+ToggleIconBadge.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ToggleIconBadge.BackgroundTransparency = 0.85
+ToggleIconBadge.BorderSizePixel = 0
+ToggleIconBadge.ZIndex = 6
+Instance.new("UICorner", ToggleIconBadge).CornerRadius = UDim.new(1, 0)
+
+local ToggleIcon = Instance.new("TextLabel", ToggleIconBadge)
+ToggleIcon.Size = UDim2.new(1, 0, 1, 0)
+ToggleIcon.BackgroundTransparency = 1
+ToggleIcon.Text = "⚔"
+ToggleIcon.TextColor3 = Color3.new(1, 1, 1)
+ToggleIcon.Font = Enum.Font.GothamBold
+ToggleIcon.TextSize = 16
+ToggleIcon.ZIndex = 7
+
+local ToggleLabel = Instance.new("TextLabel", ToggleBtn)
+ToggleLabel.Size = UDim2.new(1, -48, 1, 0)
+ToggleLabel.Position = UDim2.new(0, 44, 0, 0)
+ToggleLabel.BackgroundTransparency = 1
+ToggleLabel.Text = "Gear List"
+ToggleLabel.TextColor3 = Color3.new(1, 1, 1)
+ToggleLabel.Font = Enum.Font.GothamBold
+ToggleLabel.TextSize = 14
+ToggleLabel.TextXAlignment = Enum.TextXAlignment.Left
+ToggleLabel.TextTruncate = Enum.TextTruncate.AtEnd
+ToggleLabel.ZIndex = 6
+
+local open = false
+local CLOSED_COLOR, CLOSED_COLOR_DOWN = Color3.fromRGB(40, 130, 210), Color3.fromRGB(30, 100, 170)
+local OPEN_COLOR, OPEN_COLOR_DOWN = Color3.fromRGB(190, 60, 60), Color3.fromRGB(150, 45, 45)
+
+ToggleBtn.MouseButton1Down:Connect(function()
+    ToggleBtn.BackgroundColor3 = open and OPEN_COLOR_DOWN or CLOSED_COLOR_DOWN
+end)
+ToggleBtn.MouseButton1Up:Connect(function()
+    ToggleBtn.BackgroundColor3 = open and OPEN_COLOR or CLOSED_COLOR
+end)
+
+-- Main Frame
+local MainFrame = Instance.new("Frame")
+MainFrame.Size = UDim2.new(0, DEFAULT_W, 0, DEFAULT_H)
+MainFrame.Position = UDim2.new(0.5, -DEFAULT_W/2, 0.5, -DEFAULT_H/2)
+MainFrame.BackgroundColor3 = Color3.fromRGB(18, 18, 25)
+MainFrame.BorderSizePixel = 0
+MainFrame.Visible = false
+MainFrame.ClipsDescendants = true
+MainFrame.Parent = ScreenGui
+Instance.new("UICorner", MainFrame).CornerRadius = UDim.new(0, 16)
+
+local MainStroke = Instance.new("UIStroke", MainFrame)
+MainStroke.Color = Color3.fromRGB(255,255,255)
+MainStroke.Transparency = 0.9
+MainStroke.Thickness = 1
+
+-- Title Bar (subtle gradient + accent underline)
+local TitleBar = Instance.new("Frame")
+TitleBar.Size = UDim2.new(1, 0, 0, 46)
+TitleBar.BackgroundColor3 = Color3.fromRGB(26, 26, 38)
+TitleBar.BorderSizePixel = 0
+TitleBar.Parent = MainFrame
+
+local tbGradient = Instance.new("UIGradient", TitleBar)
+tbGradient.Color = ColorSequence.new(Color3.fromRGB(34,34,50), Color3.fromRGB(24,24,36))
+tbGradient.Rotation = 90
+
+local AccentLine = Instance.new("Frame", MainFrame)
+AccentLine.Size = UDim2.new(1, 0, 0, 2)
+AccentLine.Position = UDim2.new(0, 0, 0, 46)
+AccentLine.BorderSizePixel = 0
+AccentLine.ZIndex = 2
+local accentGrad = Instance.new("UIGradient", AccentLine)
+accentGrad.Color = ColorSequence.new(Color3.fromRGB(70,130,220), Color3.fromRGB(150,90,220))
+
+local TitleIcon = Instance.new("TextLabel", TitleBar)
+TitleIcon.Size = UDim2.new(0,26,1,0)
+TitleIcon.Position = UDim2.new(0,14,0,0)
+TitleIcon.BackgroundTransparency = 1
+TitleIcon.Text = "⚔"
+TitleIcon.TextColor3 = Color3.fromRGB(120,160,240)
+TitleIcon.Font = Enum.Font.GothamBold
+TitleIcon.TextSize = 16
+
+local TitleLabel = Instance.new("TextLabel", TitleBar)
+TitleLabel.Size = UDim2.new(1,-110,1,0)
+TitleLabel.Position = UDim2.new(0,40,0,0)
+TitleLabel.BackgroundTransparency = 1
+TitleLabel.Text = "Gear List"
+TitleLabel.TextColor3 = Color3.new(1,1,1)
+TitleLabel.Font = Enum.Font.GothamBold
+TitleLabel.TextSize = 15
+TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+local TitleCount = Instance.new("TextLabel", TitleBar)
+TitleCount.Size = UDim2.new(0,90,0,14)
+TitleCount.Position = UDim2.new(0,41,0.5,3)
+TitleCount.BackgroundTransparency = 1
+TitleCount.Text = #gears .. " gears"
+TitleCount.TextColor3 = Color3.fromRGB(140,145,175)
+TitleCount.Font = Enum.Font.Gotham
+TitleCount.TextSize = 10
+TitleCount.TextXAlignment = Enum.TextXAlignment.Left
+
+local CloseBtn = Instance.new("TextButton", TitleBar)
+CloseBtn.Size = UDim2.new(0,30,0,30)
+CloseBtn.Position = UDim2.new(1,-40,0.5,-15)
+CloseBtn.BackgroundColor3 = Color3.fromRGB(60,60,76)
+CloseBtn.BackgroundTransparency = 0.2
+CloseBtn.AutoButtonColor = true
+CloseBtn.BorderSizePixel = 0
+CloseBtn.Text = "✕"
+CloseBtn.TextColor3 = Color3.fromRGB(230,230,240)
+CloseBtn.Font = Enum.Font.GothamBold
+CloseBtn.TextSize = 13
+Instance.new("UICorner", CloseBtn).CornerRadius = UDim.new(1,0)
+CloseBtn.MouseEnter:Connect(function() CloseBtn.BackgroundColor3 = Color3.fromRGB(200,70,70) end)
+CloseBtn.MouseLeave:Connect(function() CloseBtn.BackgroundColor3 = Color3.fromRGB(60,60,76) end)
+
+-- Search Bar (rounded pill, icon, clear button, focus glow)
+local SearchFrame = Instance.new("Frame", MainFrame)
+SearchFrame.Size = UDim2.new(1,-20,0,38)
+SearchFrame.Position = UDim2.new(0,10,0,52)
+SearchFrame.BackgroundColor3 = Color3.fromRGB(30,30,42)
+SearchFrame.BorderSizePixel = 0
+Instance.new("UICorner", SearchFrame).CornerRadius = UDim.new(1,0)
+
+local SearchStroke = Instance.new("UIStroke", SearchFrame)
+SearchStroke.Color = Color3.fromRGB(90,120,190)
+SearchStroke.Transparency = 0.65
+SearchStroke.Thickness = 1
+
+local SearchIcon = Instance.new("TextLabel", SearchFrame)
+SearchIcon.Size = UDim2.new(0,32,1,0)
+SearchIcon.Position = UDim2.new(0,4,0,0)
+SearchIcon.BackgroundTransparency = 1
+SearchIcon.Text = "🔍"
+SearchIcon.TextColor3 = Color3.fromRGB(140,150,190)
+SearchIcon.TextSize = 14
+SearchIcon.Font = Enum.Font.GothamMedium
+
+local ClearBtn = Instance.new("TextButton", SearchFrame)
+ClearBtn.Size = UDim2.new(0,26,0,26)
+ClearBtn.Position = UDim2.new(1,-32,0.5,-13)
+ClearBtn.BackgroundColor3 = Color3.fromRGB(55,55,72)
+ClearBtn.BackgroundTransparency = 0.3
+ClearBtn.BorderSizePixel = 0
+ClearBtn.Text = "✕"
+ClearBtn.TextColor3 = Color3.fromRGB(200,200,220)
+ClearBtn.Font = Enum.Font.GothamBold
+ClearBtn.TextSize = 11
+ClearBtn.Visible = false
+ClearBtn.ZIndex = 3
+Instance.new("UICorner", ClearBtn).CornerRadius = UDim.new(1,0)
+
+local SearchBox = Instance.new("TextBox", SearchFrame)
+SearchBox.Size = UDim2.new(1,-72,1,0)
+SearchBox.Position = UDim2.new(0,34,0,0)
+SearchBox.BackgroundTransparency = 1
+SearchBox.PlaceholderText = "Search gear name or ID..."
+SearchBox.PlaceholderColor3 = Color3.fromRGB(125,125,148)
+SearchBox.Text = ""
+SearchBox.TextColor3 = Color3.new(1,1,1)
+SearchBox.Font = Enum.Font.GothamMedium
+SearchBox.TextSize = 13
+SearchBox.TextXAlignment = Enum.TextXAlignment.Left
+SearchBox.ClearTextOnFocus = false
+SearchBox.ZIndex = 3
+
+SearchBox.Focused:Connect(function()
+    SearchStroke.Transparency = 0.15
+    SearchStroke.Color = Color3.fromRGB(110,150,230)
+end)
+SearchBox.FocusLost:Connect(function()
+    SearchStroke.Transparency = 0.65
+    SearchStroke.Color = Color3.fromRGB(90,120,190)
+end)
+ClearBtn.MouseButton1Click:Connect(function()
+    SearchBox.Text = ""
+    SearchBox:CaptureFocus()
+end)
+
+-- Scroll Frame
+local ScrollFrame = Instance.new("ScrollingFrame", MainFrame)
+ScrollFrame.Size = UDim2.new(1,-10,1,-100)
+ScrollFrame.Position = UDim2.new(0,5,0,96)
+ScrollFrame.BackgroundTransparency = 1
+ScrollFrame.BorderSizePixel = 0
+ScrollFrame.ScrollBarThickness = 4
+ScrollFrame.ScrollBarImageColor3 = Color3.fromRGB(80,120,200)
+ScrollFrame.CanvasSize = UDim2.new(0,0,0,0)
+ScrollFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
+
+local ListLayout = Instance.new("UIListLayout", ScrollFrame)
+ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+ListLayout.Padding = UDim.new(0,4)
+
+local ListPad = Instance.new("UIPadding", ScrollFrame)
+ListPad.PaddingTop = UDim.new(0,4)
+ListPad.PaddingLeft = UDim.new(0,4)
+ListPad.PaddingRight = UDim.new(0,4)
+
+-- Notify (rounded toast, subtle stroke + shadow)
+local NotifyFrame = Instance.new("Frame", ScreenGui)
+NotifyFrame.Size = UDim2.new(0,260,0,38)
+NotifyFrame.Position = UDim2.new(0.5,-130,1,-64)
+NotifyFrame.BackgroundColor3 = Color3.fromRGB(40,160,80)
+NotifyFrame.BorderSizePixel = 0
+NotifyFrame.Visible = false
+NotifyFrame.ZIndex = 10
+Instance.new("UICorner", NotifyFrame).CornerRadius = UDim.new(1,0)
+
+local NotifyStroke = Instance.new("UIStroke", NotifyFrame)
+NotifyStroke.Color = Color3.fromRGB(255,255,255)
+NotifyStroke.Transparency = 0.75
+NotifyStroke.Thickness = 1
+
+local NotifyLabel = Instance.new("TextLabel", NotifyFrame)
+NotifyLabel.Size = UDim2.new(1,-16,1,0)
+NotifyLabel.Position = UDim2.new(0,8,0,0)
+NotifyLabel.BackgroundTransparency = 1
+NotifyLabel.Text = "Sent!"
+NotifyLabel.TextColor3 = Color3.new(1,1,1)
+NotifyLabel.Font = Enum.Font.GothamSemibold
+NotifyLabel.TextSize = 13
+NotifyLabel.ZIndex = 11
+
+-- Clipboard popup
+local ClipFrame = Instance.new("Frame", MainFrame)
+ClipFrame.Size = UDim2.new(0,300,0,64)
+ClipFrame.Position = UDim2.new(0.5,-150,0,-70)
+ClipFrame.BackgroundColor3 = Color3.fromRGB(28,28,42)
+ClipFrame.BorderSizePixel = 0
+ClipFrame.Visible = false
+ClipFrame.ZIndex = 20
+Instance.new("UICorner", ClipFrame).CornerRadius = UDim.new(0,12)
+
+local ClipStroke = Instance.new("UIStroke", ClipFrame)
+ClipStroke.Color = Color3.fromRGB(110,150,230)
+ClipStroke.Transparency = 0.6
+ClipStroke.Thickness = 1
+
+local ClipHint = Instance.new("TextLabel", ClipFrame)
+ClipHint.Size = UDim2.new(1,-16,0,18)
+ClipHint.Position = UDim2.new(0,8,0,6)
+ClipHint.BackgroundTransparency = 1
+ClipHint.Text = "Press Ctrl+A then Ctrl+C to copy:"
+ClipHint.TextColor3 = Color3.fromRGB(160,210,255)
+ClipHint.Font = Enum.Font.GothamMedium
+ClipHint.TextSize = 11
+ClipHint.ZIndex = 21
+
+local ClipBox = Instance.new("TextBox", ClipFrame)
+ClipBox.Size = UDim2.new(1,-16,0,30)
+ClipBox.Position = UDim2.new(0,8,0,28)
+ClipBox.BackgroundColor3 = Color3.fromRGB(42,42,60)
+ClipBox.BorderSizePixel = 0
+ClipBox.Text = ""
+ClipBox.TextColor3 = Color3.new(1,1,1)
+ClipBox.Font = Enum.Font.GothamBold
+ClipBox.TextSize = 13
+ClipBox.ZIndex = 21
+Instance.new("UICorner", ClipBox).CornerRadius = UDim.new(0,8)
+
+-- Helper functions
+local notifyThread
+local function showNotify(msg, color)
+    NotifyLabel.Text = msg
+    NotifyFrame.BackgroundColor3 = color or Color3.fromRGB(40,160,80)
+    NotifyFrame.Visible = true
+    if notifyThread then task.cancel(notifyThread) end
+    notifyThread = task.delay(2.5, function() NotifyFrame.Visible = false end)
+end
+
+local clipThread
+local function showClip(id)
+    ClipBox.Text = tostring(id)
+    ClipFrame.Visible = true
+    pcall(function() ClipBox:CaptureFocus() end)
+    if clipThread then task.cancel(clipThread) end
+    clipThread = task.delay(4, function() ClipFrame.Visible = false end)
+end
+
+local function sendChat(msg)
+    local ok = pcall(function()
+        local tcs = game:GetService("TextChatService")
+        if tcs.ChatVersion == Enum.ChatVersion.TextChatService then
+            local ch = tcs.TextChannels:FindFirstChild("RBXGeneral")
+            if ch then ch:SendAsync(msg) end
+        end
+    end)
+    if not ok then
+        pcall(function()
+            local ev = game:GetService("ReplicatedStorage")
+                :FindFirstChild("DefaultChatSystemChatEvents")
+            if ev then
+                local s = ev:FindFirstChild("SayMessageRequest")
+                if s then s:FireServer(msg, "All") end
+            end
+        end)
+    end
+end
+
+-- Build rows
+local allRows = {}
+
+for i, gear in ipairs(gears) do
+    local ok, err = pcall(function()
+        local name = tostring(gear[1] or "Unknown")
+        local id   = tostring(gear[2] or 0)
+
+        local baseColor = (i%2==0) and Color3.fromRGB(26,26,36) or Color3.fromRGB(31,31,44)
+
+        local Row = Instance.new("Frame", ScrollFrame)
+        Row.Name = "Row_"..i
+        Row.Size = UDim2.new(1,0,0,64)
+        Row.BackgroundColor3 = baseColor
+        Row.BorderSizePixel = 0
+        Row.LayoutOrder = i
+        Instance.new("UICorner", Row).CornerRadius = UDim.new(0,10)
+
+        local RowStroke = Instance.new("UIStroke", Row)
+        RowStroke.Color = Color3.fromRGB(255,255,255)
+        RowStroke.Transparency = 0.94
+        RowStroke.Thickness = 1
+
+        -- Image (kept as-is, just framed a bit nicer)
+        local ImgFrame = Instance.new("Frame", Row)
+        ImgFrame.Size = UDim2.new(0,54,0,54)
+        ImgFrame.Position = UDim2.new(0,6,0.5,-27)
+        ImgFrame.BackgroundColor3 = Color3.fromRGB(15,15,22)
+        ImgFrame.BorderSizePixel = 0
+        Instance.new("UICorner", ImgFrame).CornerRadius = UDim.new(0,8)
+
+        local Img = Instance.new("ImageLabel", ImgFrame)
+        Img.Size = UDim2.new(1,-6,1,-6)
+        Img.Position = UDim2.new(0,3,0,3)
+        Img.BackgroundTransparency = 1
+        Img.Image = "rbxthumb://type=Asset&id="..id.."&w=150&h=150"
+        Img.ScaleType = Enum.ScaleType.Fit
+        Instance.new("UICorner", Img).CornerRadius = UDim.new(0,6)
+
+        -- Name label
+        local NameLbl = Instance.new("TextLabel", Row)
+        NameLbl.Size = UDim2.new(1,-234,0,22)
+        NameLbl.Position = UDim2.new(0,68,0,9)
+        NameLbl.BackgroundTransparency = 1
+        NameLbl.Text = name
+        NameLbl.TextColor3 = Color3.fromRGB(235,235,250)
+        NameLbl.Font = Enum.Font.GothamSemibold
+        NameLbl.TextSize = 13
+        NameLbl.TextXAlignment = Enum.TextXAlignment.Left
+        NameLbl.TextTruncate = Enum.TextTruncate.AtEnd
+
+        -- ID label (small pill-style tag)
+        local IDLbl = Instance.new("TextLabel", Row)
+        IDLbl.Size = UDim2.new(1,-234,0,18)
+        IDLbl.Position = UDim2.new(0,68,0,33)
+        IDLbl.BackgroundTransparency = 1
+        IDLbl.Text = "ID " .. id
+        IDLbl.TextColor3 = Color3.fromRGB(125,150,205)
+        IDLbl.Font = Enum.Font.Gotham
+        IDLbl.TextSize = 11
+        IDLbl.TextXAlignment = Enum.TextXAlignment.Left
+
+        -- Copy button
+        local CopyBtn = Instance.new("TextButton", Row)
+        CopyBtn.Size = UDim2.new(0,60,0,30)
+        CopyBtn.Position = UDim2.new(1,-158,0.5,-15)
+        CopyBtn.BackgroundColor3 = Color3.fromRGB(48,52,72)
+        CopyBtn.AutoButtonColor = true
+        CopyBtn.BorderSizePixel = 0
+        CopyBtn.Text = "⧉  Copy"
+        CopyBtn.TextColor3 = Color3.fromRGB(225,225,240)
+        CopyBtn.Font = Enum.Font.GothamMedium
+        CopyBtn.TextSize = 11
+        Instance.new("UICorner", CopyBtn).CornerRadius = UDim.new(0,8)
+        local CopyStroke = Instance.new("UIStroke", CopyBtn)
+        CopyStroke.Color = Color3.fromRGB(255,255,255)
+        CopyStroke.Transparency = 0.88
+
+        CopyBtn.MouseButton1Click:Connect(function()
+            local copied = pcall(function() setclipboard(id) end)
+            if copied then
+                showNotify("Copied: "..id, Color3.fromRGB(50,90,170))
+            else
+                showClip(id)
+            end
+        end)
+
+        -- Send button
+        local SendBtn = Instance.new("TextButton", Row)
+        SendBtn.Size = UDim2.new(0,76,0,30)
+        SendBtn.Position = UDim2.new(1,-84,0.5,-15)
+        SendBtn.BackgroundColor3 = Color3.fromRGB(42,150,90)
+        SendBtn.AutoButtonColor = true
+        SendBtn.BorderSizePixel = 0
+        SendBtn.Text = "➤  Send"
+        SendBtn.TextColor3 = Color3.new(1,1,1)
+        SendBtn.Font = Enum.Font.GothamBold
+        SendBtn.TextSize = 12
+        Instance.new("UICorner", SendBtn).CornerRadius = UDim.new(0,8)
+
+        SendBtn.MouseButton1Click:Connect(function()
+            sendChat("gear "..id)
+            showNotify("Sent: gear "..id, Color3.fromRGB(40,160,80))
+        end)
+
+        -- Hover (smooth-ish color swap + border highlight)
+        Row.MouseEnter:Connect(function()
+            Row.BackgroundColor3 = Color3.fromRGB(40,46,68)
+            RowStroke.Transparency = 0.75
+        end)
+        Row.MouseLeave:Connect(function()
+            Row.BackgroundColor3 = baseColor
+            RowStroke.Transparency = 0.94
+        end)
+
+        allRows[i] = {row=Row, name=name:lower(), id=id}
+    end)
+    if not ok then
+        warn("[GearGUI] Row "..i.." failed: "..tostring(err))
+    end
+end
+
+-- Search
+SearchBox:GetPropertyChangedSignal("Text"):Connect(function()
+    local q = SearchBox.Text:lower()
+    ClearBtn.Visible = q ~= ""
+    for _, e in ipairs(allRows) do
+        if e and e.row then
+            e.row.Visible = (q=="" or (e.name and e.name:find(q,1,true)) or (e.id and e.id:find(q,1,true)))
+        end
+    end
+end)
+
+-- Toggle / Close
+local function setOpen(v)
+    open = v
+    MainFrame.Visible = v
+    ToggleLabel.Text = v and "Close" or "Gear List"
+    ToggleIcon.Text = v and "✕" or "⚔"
+    ToggleBtn.BackgroundColor3 = v and OPEN_COLOR or CLOSED_COLOR
+end
+
+ToggleBtn.MouseButton1Click:Connect(function() setOpen(not open) end)
+CloseBtn.MouseButton1Click:Connect(function() setOpen(false) end)
+
+-- Drag (mouse + touch)
+local dragging, dragStart, startPos = false, nil, nil
+TitleBar.InputBegan:Connect(function(i)
+    if i.UserInputType == Enum.UserInputType.MouseButton1 or i.UserInputType == Enum.UserInputType.Touch then
+        dragging=true; dragStart=i.Position; startPos=MainFrame.Position
+    end
+end)
+TitleBar.InputEnded:Connect(function(i)
+    if i.UserInputType == Enum.UserInputType.MouseButton1 or i.UserInputType == Enum.UserInputType.Touch then
+        dragging=false
+    end
+end)
+UserInputService.InputChanged:Connect(function(i)
+    if dragging and (i.UserInputType == Enum.UserInputType.MouseMovement or i.UserInputType == Enum.UserInputType.Touch) then
+        local d = i.Position - dragStart
+        MainFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset+d.X, startPos.Y.Scale, startPos.Y.Offset+d.Y)
+    end
+end)
+
+-- Resize handles (mobile-friendly corner grips, mouse + touch)
+local MIN_W, MIN_H = 260, 300
+
+local function getMaxSize()
+    local cam = workspace.CurrentCamera
+    local vp = cam and cam.ViewportSize or Vector2.new(1280, 720)
+    return vp.X - 20, vp.Y - 20
+end
+
+local function makeHandle(name, anchorX, anchorY, posX, posY)
+    local h = Instance.new("Frame")
+    h.Name = "Resize_"..name
+    h.Size = UDim2.new(0, 34, 0, 34)
+    h.AnchorPoint = Vector2.new(anchorX, anchorY)
+    h.Position = UDim2.new(posX, 0, posY, 0)
+    h.BackgroundColor3 = Color3.fromRGB(80, 130, 210)
+    h.BackgroundTransparency = 0.55
+    h.BorderSizePixel = 0
+    h.ZIndex = 15
+    h.Parent = MainFrame
+    Instance.new("UICorner", h).CornerRadius = UDim.new(1, 0)
+    return h
+end
+
+local HandleTL = makeHandle("TL", 0.5, 0.5, 0, 0)
+local HandleTR = makeHandle("TR", 0.5, 0.5, 1, 0)
+local HandleBL = makeHandle("BL", 0.5, 0.5, 0, 1)
+local HandleBR = makeHandle("BR", 0.5, 0.5, 1, 1)
+
+local resizing, resizeCorner = false, nil
+local resizeStart, sizeStart, posStart = nil, nil, nil
+
+local function beginResize(corner)
+    return function(i)
+        if i.UserInputType == Enum.UserInputType.MouseButton1 or i.UserInputType == Enum.UserInputType.Touch then
+            resizing = true
+            resizeCorner = corner
+            resizeStart = i.Position
+            sizeStart = MainFrame.Size
+            posStart = MainFrame.Position
+        end
+    end
+end
+
+local function endResize(i)
+    if i.UserInputType == Enum.UserInputType.MouseButton1 or i.UserInputType == Enum.UserInputType.Touch then
+        resizing = false
+    end
+end
+
+HandleTL.InputBegan:Connect(beginResize("TL"))
+HandleTR.InputBegan:Connect(beginResize("TR"))
+HandleBL.InputBegan:Connect(beginResize("BL"))
+HandleBR.InputBegan:Connect(beginResize("BR"))
+
+HandleTL.InputEnded:Connect(endResize)
+HandleTR.InputEnded:Connect(endResize)
+HandleBL.InputEnded:Connect(endResize)
+HandleBR.InputEnded:Connect(endResize)
+
+UserInputService.InputChanged:Connect(function(i)
+    if not resizing then return end
+    if i.UserInputType ~= Enum.UserInputType.MouseMovement and i.UserInputType ~= Enum.UserInputType.Touch then
+        return
+    end
+
+    local d = i.Position - resizeStart
+    local maxW, maxH = getMaxSize()
+
+    local newW, newH = sizeStart.X.Offset, sizeStart.Y.Offset
+    if resizeCorner == "TL" then
+        newW = sizeStart.X.Offset - d.X
+        newH = sizeStart.Y.Offset - d.Y
+    elseif resizeCorner == "TR" then
+        newW = sizeStart.X.Offset + d.X
+        newH = sizeStart.Y.Offset - d.Y
+    elseif resizeCorner == "BL" then
+        newW = sizeStart.X.Offset - d.X
+        newH = sizeStart.Y.Offset + d.Y
+    elseif resizeCorner == "BR" then
+        newW = sizeStart.X.Offset + d.X
+        newH = sizeStart.Y.Offset + d.Y
+    end
+
+    newW = math.clamp(newW, MIN_W, maxW)
+    newH = math.clamp(newH, MIN_H, maxH)
+
+    -- Keep the opposite edge fixed while the dragged corner moves
+    local newX, newY = posStart.X.Offset, posStart.Y.Offset
+    if resizeCorner == "TL" or resizeCorner == "BL" then
+        newX = (posStart.X.Offset + sizeStart.X.Offset) - newW
+    end
+    if resizeCorner == "TL" or resizeCorner == "TR" then
+        newY = (posStart.Y.Offset + sizeStart.Y.Offset) - newH
+    end
+
+    MainFrame.Size = UDim2.new(0, newW, 0, newH)
+    MainFrame.Position = UDim2.new(posStart.X.Scale, newX, posStart.Y.Scale, newY)
+end)
+
+print("[GearGUI] Loaded "..#gears.." gears successfully!")
